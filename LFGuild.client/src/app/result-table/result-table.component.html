@@ -22,7 +22,7 @@
 
       <ng-container matColumnDef="charlink">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="charlink-column"> WoWProgress </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="charlink-column"> {{row.charlink}} </mat-cell>
+        <mat-cell *matCellDef="let row" class="charlink-column"> <a href="https://www.wowprogress.com{{row.charlink}}" target="_blank">wowprogress</a> </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="timestamp">
