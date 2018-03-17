@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { LfguildService } from './services/lfguild.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -33,8 +35,9 @@ export class AppComponent implements OnInit{
   ];
 
   optionsForm: FormGroup;
+  data: Observable<any[]>;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private lfgService: LfguildService) {
     this.buildForm();
   }
 
@@ -49,5 +52,9 @@ export class AppComponent implements OnInit{
     group['orderBy'] = new FormControl('ts', Validators.required);
 
     this.optionsForm = new FormGroup(group);
+  }
+
+  startScan() {
+    this.data = this.lfgService.get(this.optionsForm.value);
   }
 }

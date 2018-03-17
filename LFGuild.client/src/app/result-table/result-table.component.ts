@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { testdata } from './testdata';
 
@@ -9,8 +9,9 @@ import { testdata } from './testdata';
 })
 export class ResultTableComponent implements OnInit {
 
-  dataSource = testdata;
   displayedColumns = ['name', 'server', 'ilvl', 'charlink', 'timestamp', 'race', 'class', 'battletag', 'languages', 'transfer', 'raidsPerWeek', 'specs', 'pveScore', 'mPlusScore'];
+
+  @Input() dataSource: any[];
 
   constructor() { }
 

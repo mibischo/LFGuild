@@ -31,9 +31,9 @@
     </form>
   </div>
 <div class="mdl-grid mdl-cell mdl-cell--12-col">
-  <button mat-raised-button color="primary" style="margin-left: 8px">WowProgress neu laden</button>
+  <button mat-raised-button color="primary" style="margin-left: 8px" (click)="startScan()">WowProgress neu laden</button>
 </div>
 
 <!-- <div class="mdl-grid mdl-cell mdl-cell--12-col"> -->
-  <app-result-table style="width: 100%"></app-result-table>
+  <app-result-table style="width: 100%" [dataSource]="data | async"></app-result-table>
 <!-- </div> -->
