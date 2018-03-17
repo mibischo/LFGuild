@@ -3,6 +3,10 @@ var app = express();
 
 app.use(express.static('wwwroot'));
 
+app.get('/', function(req, res) {
+  res.send('Hello World!');
+});
+
 app.get('/getWowProgress', function (req, res) {
   res.send('Hello World!');
 });
