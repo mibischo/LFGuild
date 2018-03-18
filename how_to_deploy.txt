@@ -1,0 +1,4 @@
+git commit -am "live loading"
+git push heroku master
+heroku ps:scale web=1
+heroku open
