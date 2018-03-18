@@ -2,7 +2,7 @@ var Crawler = require("crawler");
 var Promise = require("promise");
 
 module.exports = {
-    scan: function(raidsPerWeek, nrSites, orderBy) {
+    scan: function(language, raidsPerWeek, nrSites, orderBy) {
         var chars = new Array();
         return new Promise(function (resolve, reject) {
             var charCrawler = new Crawler({
@@ -117,9 +117,10 @@ module.exports = {
             });
     
             let sort = orderBy == 'ts' ? '/sortby.ts' : '';
-    
+            let rpw = raidsPerWeek == 0 ? '' : raidsPerWeek;
+
             for (var i=1; i<=nrSites ; i++) {
-                listCrawler.queue('https://www.wowprogress.com/gearscore/char_rating/next/' + i +'/lfg.1/raids_week.' + raidsPerWeek + '/lang.de' + sort);
+                listCrawler.queue('https://www.wowprogress.com/gearscore/char_rating/next/' + i +'/lfg.1/raids_week.' + raidsPerWeek + '/lang.' + language + sort);
             }
     
             charCrawler.on('drain', function() {

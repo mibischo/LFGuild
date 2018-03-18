@@ -1,0 +1,87 @@
+.class-deathknight {
+    background-color: rgba(196, 31, 59, 0.8);
+}
+
+.class-demonhunter {
+    background-color: rgba(163, 48, 201, 0.8);
+}
+
+.class-druid {
+    background-color: rgba(255, 125, 10, 0.8);
+}
+
+.class-hunter {
+    background-color: rgba(171, 212, 115, 0.8);
+}
+
+.class-mage {
+    background-color: rgba(105, 204, 240, 0.8);
+}
+
+.class-monk {
+    background-color: rgba(0, 132, 103, 0.8);
+}
+
+.class-paladin {
+    background-color: rgba(245, 140, 186, 0.8);
+}
+
+.class-priest {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.class-rogue {
+    background-color: rgba(255, 245, 105, 0.8);
+}
+
+.class-shaman {
+    background-color: rgba(36, 89, 255, 0.8);
+}
+
+.class-warlock {
+    background-color: rgba(148, 130, 202, 0.8);
+}
+
+.class-warrior {
+    background-color: rgba(199, 156, 110, 0.8);
+}
+
+.name-column {
+    flex: 0.7;
+}
+
+.ilvl-column {
+    flex: 0.5;
+}
+
+.charlink-column {
+    flex: 0.5;
+}
+
+.race-column {
+    flex: 0.7;
+}
+
+.class-column {
+    flex: 0.7;
+}
+
+.transfer-column {
+    flex: 0.7;
+}
+
+.raidsPerWeek-column {
+    flex: 0.5;
+}
+
+.specs-column {
+    flex: 1.5;
+}
+
+.pveScore-column {
+    flex: 0.5;
+}
+
+.mPlusScore-column {
+    flex: 0.5;
+}

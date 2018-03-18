@@ -11,7 +11,7 @@ app.get('/api', function(req, res) {
 
 app.get('/api/getlfg', function (req, res) {
   var options = req.query;
-  lfguild.scan(options.raidsPerWeek, options.nrSites, options.orderBy).then(function (result) {
+  lfguild.scan(options.language, options.raidsPerWeek, options.nrSites, options.orderBy).then(function (result) {
     res.send(result);
   });
 });

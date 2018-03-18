@@ -1,3 +1,53 @@
+<div class="mdl-grid" style="margin-left: 8px">
+  <mat-expansion-panel class="mdl-cell mdl-cell--12-col">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <b>Filter</b>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--2-col">
+        <mat-form-field>
+          <mat-select placeholder="Server" [(value)]="selectedServers" (selectionChange)="onFilter()" multiple>
+            <mat-option *ngFor="let s of servers" [value]="s">
+              {{ s }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mat-form-field>
+          <mat-select placeholder="Klasse" [(value)]="selectedClasses" (selectionChange)="onFilter()" multiple>
+            <mat-option *ngFor="let c of classes" [value]="c">
+              {{ c }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mat-form-field>
+          <mat-select placeholder="Transfer" [(value)]="selectedTransfer" (selectionChange)="onFilter()" multiple>
+            <mat-option *ngFor="let t of transfer" [value]="t">
+              {{ t }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mat-form-field>
+          <mat-select placeholder="Specs" [(value)]="selectedSpecs" (selectionChange)="onFilter()" multiple>
+            <mat-option *ngFor="let s of specs" [value]="s">
+              {{ s }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="mdl-cell mdl-cell-2-col"></div>
+      <div class="mdl-cell mdl-cell-2-col"></div>
+    </div>
+  </mat-expansion-panel>
+</div>
 <div class="mdl-grid" >
   <div class="mdl-cell mdl-cell--12-col mat-elevation-z2">
     <mat-table #table [dataSource]="_dataSource" matSort>
@@ -6,77 +56,77 @@
             The actual rendered columns are set as a property on the row definition" -->
 
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="name-column"> Name </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="name-column"> <b>Name</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="name-column"> {{row.name}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="server">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="server-column"> Server </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="server-column"> <b>Server</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="server-column"> {{row.server }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="ilvl">
-          <mat-header-cell *matHeaderCellDef mat-sort-header class="ilvl-column"> Item-Level </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="ilvl-column"> <b>Item-Level</b> </mat-header-cell>
           <mat-cell *matCellDef="let row" class="ilvl-column"> {{row.ilvl }} </mat-cell>
         </ng-container>
 
       <ng-container matColumnDef="charlink">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="charlink-column"> WoWProgress </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="charlink-column"> <a href="https://www.wowprogress.com{{row.charlink}}" target="_blank">wowprogress</a> </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="charlink-column"> <b>WoWProgress</b> </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="charlink-column" style="text-align: center;"> <a href="https://www.wowprogress.com{{row.charlink}}" target="_blank"><img src="favicon.ico"></a> </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="timestamp">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="timestamp-column"> Zuletzt aktualisiert </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="timestamp-column">{{row.timestamp }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="timestamp-column"> <b>Zuletzt aktualisiert</b> </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="timestamp-column">{{row.timestamp | date: 'MMM d, y, HH:mm:ss'}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="race">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="race-column"> Volk </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="race-column"> <b>Volk</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="race-column">{{row.race }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="class">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="class-column"> Klasse </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="class-column"> <b>Klasse</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="class-column">{{row.clazz }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="battletag">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="battletag-column"> Battletag </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="battletag-column"> <b>Battletag</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="battletag-column">{{row.battletag }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="languages">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="languages-column"> Sprachen </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="languages-column"> <b>Sprachen</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="languages-column">{{row.languages }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="transfer">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="transfer-column"> Transfer </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="transfer-column"> <b>Transfer</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="transfer-column">{{row.transfer }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="raidsPerWeek">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="raidsPerWeek-column"> Raids/Woche </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="raidsPerWeek-column"> <b>Raids/Woche</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="raidsPerWeek-column">{{row.raidsPerWeek }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="specs">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="specs-column"> Specs </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="specs-column"> <b>Specs</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="specs-column">{{row.specs }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="pveScore">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="pveScore-column"> PvE Score </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="pveScore-column"> <b>PvE Score</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="pveScore-column">{{row.pveScore }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="mPlusScore">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="mPlusScore-column"> M+ Score </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="mPlusScore-column"> <b>M+ Score</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="mPlusScore-column">{{row.mPlusScore }}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-row [ngClass]="'class-'+row.clazz.replace(' ', '')" *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   </div>
 </div>

@@ -10,6 +10,12 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit{
   
+  languages = [
+    { value: '', label: 'alle' },
+    { value: 'de', label: 'Deutsch' },
+    { value: 'en', label: 'Englisch' },
+  ];
+
   raidsPerWeek = [
     { value: 0, label: 'egal'},
     { value: 1, label: '1 Raid/Woche'},
@@ -47,6 +53,7 @@ export class AppComponent implements OnInit{
   buildForm() {
     let group: any = {};
 
+    group['language'] = new FormControl('de', Validators.required);
     group['raidsPerWeek'] = new FormControl(3, Validators.required);
     group['nrSites'] = new FormControl(1, Validators.required);
     group['orderBy'] = new FormControl('ts', Validators.required);

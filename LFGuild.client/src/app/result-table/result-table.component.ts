@@ -12,13 +12,28 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['name', 'server', 'ilvl', 'charlink', 'timestamp', 'race', 'class', 'battletag', 'languages', 'transfer', 'raidsPerWeek', 'specs', 'pveScore', 'mPlusScore'];
   _dataSource = new MatTableDataSource([]);
+  data: any[];
+  classes: string[];
+  servers: string[];
+  transfer: string[];
+  specs: string[];
+
+  selectedServers;
+  selectedClasses;
+  selectedTransfer;
+  selectedSpecs;
   
   @ViewChild(MatSort) sort: MatSort;
 
   @Input('dataSource') set dataSource(value: any[]) {
     if (value) {
       this._dataSource = new MatTableDataSource(value);
+      this.data = value;
       this._dataSource.sort = this.sort;
+      this.classes = this.getClasses(value);
+      this.servers = this.getServers(value);
+      this.transfer = this.getTransfers(value);
+      this.specs = this.getSpecs(value);
     }
   };
 
@@ -29,5 +44,125 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this._dataSource.sort = this.sort;
+  }
+
+  getClasses(result: any[]) {
+    let res: string[] = new Array();
+
+    result.forEach(r => {
+      if (res.findIndex(e => e == r.clazz) == -1) {
+        res.push(r.clazz);
+      }
+    });
+
+    return res;
+  }
+
+  getServers(result: any[]) {
+    let res: string[] = new Array();
+
+    result.forEach(r => {
+      if (res.findIndex(e => e == r.server) == -1) {
+        res.push(r.server);
+      }
+    });
+
+    return res;
+  }
+
+  getTransfers(result: any[]) {
+    let res: string[] = new Array();
+
+    result.forEach(r => {
+      if (res.findIndex(e => e == r.transfer) == -1) {
+        res.push(r.transfer);
+      }
+    });
+
+    return res;
+  }
+
+  getSpecs(result: any[]) {
+    let res: string[] = new Array();
+
+    result.forEach(r => {
+      let specs: string[] = r.specs.split(',');
+
+      specs.forEach(element => {
+        if (res.findIndex(r => r == element.trim()) == -1) {
+          res.push(element.trim());
+        }
+      });      
+    });
+
+    return res;
+  }
+
+  onFilter() {
+    let filtered = this.data;
+    let remove = new Array();
+    filtered.forEach(d => {
+      if (this.selectedServers && this.selectedServers.length > 0) {
+        let rem = true;
+
+        this.selectedServers.forEach(s => {
+          if (d.server == s) {
+            rem = false;
+          }
+        });
+
+        if (rem) {
+          remove.push(d);
+        }
+      }
+
+      if (this.selectedClasses && this.selectedClasses.length > 0) {
+        let rem = true;
+
+        this.selectedClasses.forEach(c => {
+          if (d.clazz == c) {
+            rem = false;
+          }
+        });
+
+        if (rem) {
+          remove.push(d);
+        }
+      }
+
+      if (this.selectedTransfer && this.selectedTransfer.length > 0) {
+        let rem = true;
+
+        this.selectedTransfer.forEach(t => {
+          if (d.transfer == t) {
+            rem = false;
+          }
+        });
+
+        if (rem) {
+          remove.push(d);
+        }
+      }
+
+      if (this.selectedSpecs && this.selectedSpecs.length > 0) {
+        let rem = true;
+
+        this.selectedSpecs.forEach(s => {
+          if (d.specs.includes(s)) {
+            rem = false;
+          }
+        });
+
+        if (rem) {
+          remove.push(d);
+        }
+      }
+    });
+
+    remove.forEach(r => {
+      filtered = filtered.filter(obj => obj != r);
+    });
+
+    this._dataSource = new MatTableDataSource(filtered);
   }
 }

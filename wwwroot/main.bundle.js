@@ -27,7 +27,7 @@ module.exports = ""
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class=\"mat-elevation-z6\" color=\"primary\">\n  <span><strong>LFGuild</strong></span>\n</mat-toolbar>\n<div class=\"mdl-grid mdl-cell mdl-cell-6-col\">\n    <form [formGroup]=\"optionsForm\" class=\"mdl-grid\" style=\"width: 100%\">\n      <div class=\"mdl-cell mdl-cell--4-col\">\n        <mat-form-field>\n          <mat-select formControlName=\"raidsPerWeek\" placeholder=\"Raids pro Woche\">\n            <mat-option *ngFor=\"let rpw of raidsPerWeek\" [value]=\"rpw.value\">\n              {{ rpw.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--4-col\">\n        <mat-form-field>\n          <mat-select formControlName=\"nrSites\" placeholder=\"Anz. Seiten die gescannt werden\">\n            <mat-option *ngFor=\"let ns of nrSites\" [value]=\"ns.value\">\n              {{ ns.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--4-col\" style=\"padding-top: 16px\"> \n          <span style=\"margin-right: 16px;\">ordnen nach:</span>\n          <mat-radio-group formControlName=\"orderBy\">\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"ts\">Zeit</mat-radio-button>\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"sc\">Score</mat-radio-button>\n          </mat-radio-group>\n      </div>\n    </form>\n  </div>\n<div class=\"mdl-grid mdl-cell mdl-cell--12-col\">\n  <button mat-raised-button color=\"primary\" style=\"margin-left: 8px\" (click)=\"startScan()\">WowProgress neu laden</button>\n</div>\n\n<!-- <div class=\"mdl-grid mdl-cell mdl-cell--12-col\"> -->\n  <app-result-table style=\"width: 100%\" [dataSource]=\"data | async\"></app-result-table>\n<!-- </div> -->"
+module.exports = "<mat-toolbar class=\"mat-elevation-z6\" color=\"primary\">\n  <span><strong>LFGuild</strong></span>\n</mat-toolbar>\n<div class=\"mdl-grid\">\n    <form [formGroup]=\"optionsForm\" class=\"mdl-grid\" style=\"width: 100%\">\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field>\n          <mat-select formControlName=\"language\" placeholder=\"Sprache\">\n            <mat-option *ngFor=\"let l of languages\" [value]=\"l.value\">\n              {{ l.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field>\n          <mat-select formControlName=\"raidsPerWeek\" placeholder=\"Raids pro Woche\">\n            <mat-option *ngFor=\"let rpw of raidsPerWeek\" [value]=\"rpw.value\">\n              {{ rpw.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field>\n          <mat-select formControlName=\"nrSites\" placeholder=\"Anz. Seiten die gescannt werden\">\n            <mat-option *ngFor=\"let ns of nrSites\" [value]=\"ns.value\">\n              {{ ns.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\" style=\"padding-top: 16px\"> \n          <span style=\"margin-right: 16px;\">ordnen nach:</span>\n          <mat-radio-group formControlName=\"orderBy\">\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"ts\">Zeit</mat-radio-button>\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"sc\">Score</mat-radio-button>\n          </mat-radio-group>\n      </div>\n      <div class=\"mdl-cell mdl-cell--4-col\" style=\"padding-top: 16px\">\n      </div>\n    </form>\n  </div>\n<div class=\"mdl-grid mdl-cell mdl-cell--12-col\">\n  <button mat-raised-button color=\"primary\" style=\"margin-left: 8px\" (click)=\"startScan()\">WowProgress neu laden</button>\n</div>\n\n<!-- <div class=\"mdl-grid mdl-cell mdl-cell--12-col\"> -->\n  <app-result-table style=\"width: 100%\" [dataSource]=\"data | async\"></app-result-table>\n<!-- </div> -->"
 
 /***/ }),
 
@@ -53,6 +53,11 @@ var AppComponent = /** @class */ (function () {
     function AppComponent(fb, lfgService) {
         this.fb = fb;
         this.lfgService = lfgService;
+        this.languages = [
+            { value: '', label: 'alle' },
+            { value: 'de', label: 'Deutsch' },
+            { value: 'en', label: 'Englisch' },
+        ];
         this.raidsPerWeek = [
             { value: 0, label: 'egal' },
             { value: 1, label: '1 Raid/Woche' },
@@ -81,6 +86,7 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.buildForm = function () {
         var group = {};
+        group['language'] = new forms_1.FormControl('de', forms_1.Validators.required);
         group['raidsPerWeek'] = new forms_1.FormControl(3, forms_1.Validators.required);
         group['nrSites'] = new forms_1.FormControl(1, forms_1.Validators.required);
         group['orderBy'] = new forms_1.FormControl('ts', forms_1.Validators.required);
@@ -158,14 +164,14 @@ exports.AppModule = AppModule;
 /***/ "./src/app/result-table/result-table.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".class-deathknight {\r\n    background-color: rgba(196, 31, 59, 0.8);\r\n}\r\n\r\n.class-demonhunter {\r\n    background-color: rgba(163, 48, 201, 0.8);\r\n}\r\n\r\n.class-druid {\r\n    background-color: rgba(255, 125, 10, 0.8);\r\n}\r\n\r\n.class-hunter {\r\n    background-color: rgba(171, 212, 115, 0.8);\r\n}\r\n\r\n.class-mage {\r\n    background-color: rgba(105, 204, 240, 0.8);\r\n}\r\n\r\n.class-monk {\r\n    background-color: rgba(0, 132, 103, 0.8);\r\n}\r\n\r\n.class-paladin {\r\n    background-color: rgba(245, 140, 186, 0.8);\r\n}\r\n\r\n.class-priest {\r\n    background-color: rgba(255, 255, 255, 0.8);\r\n}\r\n\r\n.class-rogue {\r\n    background-color: rgba(255, 245, 105, 0.8);\r\n}\r\n\r\n.class-shaman {\r\n    background-color: rgba(36, 89, 255, 0.8);\r\n}\r\n\r\n.class-warlock {\r\n    background-color: rgba(148, 130, 202, 0.8);\r\n}\r\n\r\n.class-warrior {\r\n    background-color: rgba(199, 156, 110, 0.8);\r\n}\r\n\r\n.name-column {\r\n    -webkit-box-flex: 0.7;\r\n        -ms-flex: 0.7;\r\n            flex: 0.7;\r\n}\r\n\r\n.ilvl-column {\r\n    -webkit-box-flex: 0.5;\r\n        -ms-flex: 0.5;\r\n            flex: 0.5;\r\n}\r\n\r\n.charlink-column {\r\n    -webkit-box-flex: 0.5;\r\n        -ms-flex: 0.5;\r\n            flex: 0.5;\r\n}\r\n\r\n.race-column {\r\n    -webkit-box-flex: 0.7;\r\n        -ms-flex: 0.7;\r\n            flex: 0.7;\r\n}\r\n\r\n.class-column {\r\n    -webkit-box-flex: 0.7;\r\n        -ms-flex: 0.7;\r\n            flex: 0.7;\r\n}\r\n\r\n.transfer-column {\r\n    -webkit-box-flex: 0.7;\r\n        -ms-flex: 0.7;\r\n            flex: 0.7;\r\n}\r\n\r\n.raidsPerWeek-column {\r\n    -webkit-box-flex: 0.5;\r\n        -ms-flex: 0.5;\r\n            flex: 0.5;\r\n}\r\n\r\n.specs-column {\r\n    -webkit-box-flex: 1.5;\r\n        -ms-flex: 1.5;\r\n            flex: 1.5;\r\n}\r\n\r\n.pveScore-column {\r\n    -webkit-box-flex: 0.5;\r\n        -ms-flex: 0.5;\r\n            flex: 0.5;\r\n}\r\n\r\n.mPlusScore-column {\r\n    -webkit-box-flex: 0.5;\r\n        -ms-flex: 0.5;\r\n            flex: 0.5;\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/result-table/result-table.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mdl-grid\" >\n  <div class=\"mdl-cell mdl-cell--12-col mat-elevation-z2\">\n    <mat-table #table [dataSource]=\"_dataSource\" matSort>\n        \n      <!--- Note that these columns can be defined in any order.\n            The actual rendered columns are set as a property on the row definition\" -->\n\n      <ng-container matColumnDef=\"name\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"name-column\"> Name </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"name-column\"> {{row.name}} </mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"server\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"server-column\"> Server </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"server-column\"> {{row.server }} </mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"ilvl\">\n          <mat-header-cell *matHeaderCellDef mat-sort-header class=\"ilvl-column\"> Item-Level </mat-header-cell>\n          <mat-cell *matCellDef=\"let row\" class=\"ilvl-column\"> {{row.ilvl }} </mat-cell>\n        </ng-container>\n\n      <ng-container matColumnDef=\"charlink\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"charlink-column\"> WoWProgress </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"charlink-column\"> <a href=\"https://www.wowprogress.com{{row.charlink}}\" target=\"_blank\">wowprogress</a> </mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"timestamp\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"timestamp-column\"> Zuletzt aktualisiert </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"timestamp-column\">{{row.timestamp }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"race\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"race-column\"> Volk </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"race-column\">{{row.race }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"class\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"class-column\"> Klasse </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"class-column\">{{row.clazz }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"battletag\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"battletag-column\"> Battletag </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"battletag-column\">{{row.battletag }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"languages\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"languages-column\"> Sprachen </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"languages-column\">{{row.languages }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"transfer\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"transfer-column\"> Transfer </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"transfer-column\">{{row.transfer }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"raidsPerWeek\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"raidsPerWeek-column\"> Raids/Woche </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"raidsPerWeek-column\">{{row.raidsPerWeek }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"specs\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"specs-column\"> Specs </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"specs-column\">{{row.specs }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"pveScore\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"pveScore-column\"> PvE Score </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"pveScore-column\">{{row.pveScore }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"mPlusScore\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"mPlusScore-column\"> M+ Score </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"mPlusScore-column\">{{row.mPlusScore }}</mat-cell>\n      </ng-container>\n\n      <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n      <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n    </mat-table>\n  </div>\n</div>"
+module.exports = "<div class=\"mdl-grid\" style=\"margin-left: 8px\">\n  <mat-expansion-panel class=\"mdl-cell mdl-cell--12-col\">\n    <mat-expansion-panel-header>\n      <mat-panel-title>\n        <b>Filter</b>\n      </mat-panel-title>\n    </mat-expansion-panel-header>\n\n    <div class=\"mdl-grid\">\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field>\n          <mat-select placeholder=\"Server\" [(value)]=\"selectedServers\" (selectionChange)=\"onFilter()\" multiple>\n            <mat-option *ngFor=\"let s of servers\" [value]=\"s\">\n              {{ s }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field>\n          <mat-select placeholder=\"Klasse\" [(value)]=\"selectedClasses\" (selectionChange)=\"onFilter()\" multiple>\n            <mat-option *ngFor=\"let c of classes\" [value]=\"c\">\n              {{ c }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field>\n          <mat-select placeholder=\"Transfer\" [(value)]=\"selectedTransfer\" (selectionChange)=\"onFilter()\" multiple>\n            <mat-option *ngFor=\"let t of transfer\" [value]=\"t\">\n              {{ t }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field>\n          <mat-select placeholder=\"Specs\" [(value)]=\"selectedSpecs\" (selectionChange)=\"onFilter()\" multiple>\n            <mat-option *ngFor=\"let s of specs\" [value]=\"s\">\n              {{ s }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell-2-col\"></div>\n      <div class=\"mdl-cell mdl-cell-2-col\"></div>\n    </div>\n  </mat-expansion-panel>\n</div>\n<div class=\"mdl-grid\" >\n  <div class=\"mdl-cell mdl-cell--12-col mat-elevation-z2\">\n    <mat-table #table [dataSource]=\"_dataSource\" matSort>\n        \n      <!--- Note that these columns can be defined in any order.\n            The actual rendered columns are set as a property on the row definition\" -->\n\n      <ng-container matColumnDef=\"name\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"name-column\"> <b>Name</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"name-column\"> {{row.name}} </mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"server\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"server-column\"> <b>Server</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"server-column\"> {{row.server }} </mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"ilvl\">\n          <mat-header-cell *matHeaderCellDef mat-sort-header class=\"ilvl-column\"> <b>Item-Level</b> </mat-header-cell>\n          <mat-cell *matCellDef=\"let row\" class=\"ilvl-column\"> {{row.ilvl }} </mat-cell>\n        </ng-container>\n\n      <ng-container matColumnDef=\"charlink\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"charlink-column\"> <b>WoWProgress</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"charlink-column\" style=\"text-align: center;\"> <a href=\"https://www.wowprogress.com{{row.charlink}}\" target=\"_blank\"><img src=\"favicon.ico\"></a> </mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"timestamp\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"timestamp-column\"> <b>Zuletzt aktualisiert</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"timestamp-column\">{{row.timestamp | date: 'MMM d, y, HH:mm:ss'}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"race\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"race-column\"> <b>Volk</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"race-column\">{{row.race }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"class\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"class-column\"> <b>Klasse</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"class-column\">{{row.clazz }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"battletag\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"battletag-column\"> <b>Battletag</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"battletag-column\">{{row.battletag }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"languages\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"languages-column\"> <b>Sprachen</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"languages-column\">{{row.languages }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"transfer\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"transfer-column\"> <b>Transfer</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"transfer-column\">{{row.transfer }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"raidsPerWeek\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"raidsPerWeek-column\"> <b>Raids/Woche</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"raidsPerWeek-column\">{{row.raidsPerWeek }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"specs\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"specs-column\"> <b>Specs</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"specs-column\">{{row.specs }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"pveScore\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"pveScore-column\"> <b>PvE Score</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"pveScore-column\">{{row.pveScore }}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"mPlusScore\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header class=\"mPlusScore-column\"> <b>M+ Score</b> </mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" class=\"mPlusScore-column\">{{row.mPlusScore }}</mat-cell>\n      </ng-container>\n\n      <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n      <mat-row [ngClass]=\"'class-'+row.clazz.replace(' ', '')\" *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n    </mat-table>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -195,7 +201,12 @@ var ResultTableComponent = /** @class */ (function () {
         set: function (value) {
             if (value) {
                 this._dataSource = new material_1.MatTableDataSource(value);
+                this.data = value;
                 this._dataSource.sort = this.sort;
+                this.classes = this.getClasses(value);
+                this.servers = this.getServers(value);
+                this.transfer = this.getTransfers(value);
+                this.specs = this.getSpecs(value);
             }
         },
         enumerable: true,
@@ -206,6 +217,100 @@ var ResultTableComponent = /** @class */ (function () {
     };
     ResultTableComponent.prototype.ngAfterViewInit = function () {
         this._dataSource.sort = this.sort;
+    };
+    ResultTableComponent.prototype.getClasses = function (result) {
+        var res = new Array();
+        result.forEach(function (r) {
+            if (res.findIndex(function (e) { return e == r.clazz; }) == -1) {
+                res.push(r.clazz);
+            }
+        });
+        return res;
+    };
+    ResultTableComponent.prototype.getServers = function (result) {
+        var res = new Array();
+        result.forEach(function (r) {
+            if (res.findIndex(function (e) { return e == r.server; }) == -1) {
+                res.push(r.server);
+            }
+        });
+        return res;
+    };
+    ResultTableComponent.prototype.getTransfers = function (result) {
+        var res = new Array();
+        result.forEach(function (r) {
+            if (res.findIndex(function (e) { return e == r.transfer; }) == -1) {
+                res.push(r.transfer);
+            }
+        });
+        return res;
+    };
+    ResultTableComponent.prototype.getSpecs = function (result) {
+        var res = new Array();
+        result.forEach(function (r) {
+            var specs = r.specs.split(',');
+            specs.forEach(function (element) {
+                if (res.findIndex(function (r) { return r == element.trim(); }) == -1) {
+                    res.push(element.trim());
+                }
+            });
+        });
+        return res;
+    };
+    ResultTableComponent.prototype.onFilter = function () {
+        var _this = this;
+        var filtered = this.data;
+        var remove = new Array();
+        filtered.forEach(function (d) {
+            if (_this.selectedServers && _this.selectedServers.length > 0) {
+                var rem_1 = true;
+                _this.selectedServers.forEach(function (s) {
+                    if (d.server == s) {
+                        rem_1 = false;
+                    }
+                });
+                if (rem_1) {
+                    remove.push(d);
+                }
+            }
+            if (_this.selectedClasses && _this.selectedClasses.length > 0) {
+                var rem_2 = true;
+                _this.selectedClasses.forEach(function (c) {
+                    if (d.clazz == c) {
+                        rem_2 = false;
+                    }
+                });
+                if (rem_2) {
+                    remove.push(d);
+                }
+            }
+            if (_this.selectedTransfer && _this.selectedTransfer.length > 0) {
+                var rem_3 = true;
+                _this.selectedTransfer.forEach(function (t) {
+                    if (d.transfer == t) {
+                        rem_3 = false;
+                    }
+                });
+                if (rem_3) {
+                    remove.push(d);
+                }
+            }
+            if (_this.selectedSpecs && _this.selectedSpecs.length > 0) {
+                var rem_4 = true;
+                _this.selectedSpecs.forEach(function (s) {
+                    if (d.specs.includes(s)) {
+                        rem_4 = false;
+                    }
+                });
+                if (rem_4) {
+                    remove.push(d);
+                }
+            }
+        });
+        remove.forEach(function (r) {
+            filtered = filtered.filter(function (obj) { return obj != r; });
+        });
+        this._dataSource = new material_1.MatTableDataSource(filtered);
     };
     __decorate([
         core_1.ViewChild(material_1.MatSort),
@@ -254,7 +359,7 @@ var LfguildService = /** @class */ (function () {
         this.http = http;
     }
     LfguildService.prototype.get = function (options) {
-        return this.http.get('/api/getlfg?raidsPerWeek=' + options.raidsPerWeek + '&nrSites=' + options.nrSites + '&orderBy=' + options.orderBy).map(function (res) { return res.json(); });
+        return this.http.get('/api/getlfg?language=' + options.language + '&raidsPerWeek=' + options.raidsPerWeek + '&nrSites=' + options.nrSites + '&orderBy=' + options.orderBy).map(function (res) { return res.json(); });
     };
     LfguildService = __decorate([
         core_1.Injectable(),
