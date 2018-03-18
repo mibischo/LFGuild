@@ -164,5 +164,6 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
     });
 
     this._dataSource = new MatTableDataSource(filtered);
+    this._dataSource.sort = this.sort;
   }
 }

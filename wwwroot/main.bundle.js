@@ -311,6 +311,7 @@ var ResultTableComponent = /** @class */ (function () {
             filtered = filtered.filter(function (obj) { return obj != r; });
         });
         this._dataSource = new material_1.MatTableDataSource(filtered);
+        this._dataSource.sort = this.sort;
     };
     __decorate([
         core_1.ViewChild(material_1.MatSort),
