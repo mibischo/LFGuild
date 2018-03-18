@@ -48,7 +48,7 @@ export class AppComponent implements OnInit{
     let group: any = {};
 
     group['raidsPerWeek'] = new FormControl(3, Validators.required);
-    group['nrSites'] = new FormControl(10, Validators.required);
+    group['nrSites'] = new FormControl(1, Validators.required);
     group['orderBy'] = new FormControl('ts', Validators.required);
 
     this.optionsForm = new FormGroup(group);
