@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/cor
 import { DataSource } from '@angular/cdk/collections';
 import { testdata } from './testdata';
 import { MatSort, MatTableDataSource } from '@angular/material';
+import { ClipboardService } from '../services/clipboard.service';
 
 @Component({
   selector: 'app-result-table',
@@ -10,7 +11,7 @@ import { MatSort, MatTableDataSource } from '@angular/material';
 })
 export class ResultTableComponent implements OnInit, AfterViewInit {
 
-  displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp'];
+  displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp', 'export'];
   _dataSource = new MatTableDataSource([]);
   data: any[];
   classes: string[];
@@ -39,7 +40,7 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
     }
   };
 
-  constructor() { }
+  constructor(private clipboardService: ClipboardService) { }
 
   ngOnInit() {
   }
@@ -98,6 +99,22 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
     });
 
     return res;
+  }
+
+  copyToClipboard(row: any) {
+    let text: string = '';
+
+    text += row.name + ' ' + row.server + ' \n';
+    text += row.clazz + ' ' + row.specs + ' \n';
+    text += row.transfer + ' \n';
+    text += 'PvE Score: ' + row.pveScore + ' \n';
+    text += 'M+ Score: ' + row.mPlusScore + ' \n';
+    text += 'Gilde: https://www.wowprogress.com' + row.guildlink + ' \n';
+    text += 'WowProgress: https://www.wowprogress.com' + row.charlink + ' \n';
+    text += 'Logs: https://www.warcraftlogs.com' + row.charlink + ' \n';
+    text += 'Armory: ' + row.armory + ' \n' ;
+
+    this.clipboardService.copy(text);
   }
 
   onFilter() {

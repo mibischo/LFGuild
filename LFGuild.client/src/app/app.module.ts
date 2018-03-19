@@ -9,6 +9,7 @@ import { MyMaterialModule } from './utils/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ResultTableComponent } from './result-table/result-table.component';
 import { LfguildService } from './services/lfguild.service';
+import { ClipboardService } from './services/clipboard.service';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { LfguildService } from './services/lfguild.service';
     HttpModule,
   ],
   providers: [
-    LfguildService
+    LfguildService,
+    ClipboardService
   ],
   bootstrap: [AppComponent]
 })

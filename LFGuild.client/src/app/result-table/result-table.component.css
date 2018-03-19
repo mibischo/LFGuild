@@ -89,3 +89,7 @@
 .mPlusScore-column {
     flex: 0.5;
 }
+
+.export-column {
+    flex: 0.2;
+}

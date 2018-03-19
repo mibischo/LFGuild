@@ -94,7 +94,7 @@
       </ng-container>
 
       <ng-container matColumnDef="charlink">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="charlink-column"> <b>Links</b> </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef class="charlink-column"> <b>Links</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="charlink-column"> 
           <a href="https://www.wowprogress.com{{row.charlink}}" target="_blank"><img width="24px" src="favicon.ico"></a> 
           <a href="https://www.warcraftlogs.com{{row.charlink}}" target="_blank"><img width="24px" src="assets/warcraftlogs-icon.png"></a>
@@ -150,6 +150,11 @@
       <ng-container matColumnDef="mPlusScore">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="mPlusScore-column"> <b>M+ Score</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="mPlusScore-column">{{row.mPlusScore }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="export">
+        <mat-header-cell *matHeaderCellDef class="export-column"></mat-header-cell>
+        <mat-cell *matCellDef="let row" class="export-column"><button mat-icon-button (click)="copyToClipboard(row)"><mat-icon>content_copy</mat-icon></button></mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
