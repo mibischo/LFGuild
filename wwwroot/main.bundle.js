@@ -32,10 +32,13 @@ module.exports = "<mat-toolbar class=\"mat-elevation-z6\" color=\"primary\">\n  
 /***/ }),
 
 /***/ "./src/app/app.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_lfguild_service__ = __webpack_require__("./src/app/services/lfguild.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -45,10 +48,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var forms_1 = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
-var lfguild_service_1 = __webpack_require__("./src/app/services/lfguild.service.ts");
+
+
+
 var AppComponent = /** @class */ (function () {
     function AppComponent(fb, lfgService) {
         this.fb = fb;
@@ -90,11 +92,11 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.buildForm = function () {
         var group = {};
-        group['language'] = new forms_1.FormControl('de', forms_1.Validators.required);
-        group['raidsPerWeek'] = new forms_1.FormControl(3, forms_1.Validators.required);
-        group['nrSites'] = new forms_1.FormControl(1, forms_1.Validators.required);
-        group['orderBy'] = new forms_1.FormControl('ts', forms_1.Validators.required);
-        this.optionsForm = new forms_1.FormGroup(group);
+        group['language'] = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormControl */]('de', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["l" /* Validators */].required);
+        group['raidsPerWeek'] = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormControl */](3, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["l" /* Validators */].required);
+        group['nrSites'] = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormControl */](1, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["l" /* Validators */].required);
+        group['orderBy'] = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormControl */]('ts', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["l" /* Validators */].required);
+        this.optionsForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* FormGroup */](group);
     };
     AppComponent.prototype.startScan = function () {
         var _this = this;
@@ -120,69 +122,78 @@ var AppComponent = /** @class */ (function () {
         }
     };
     AppComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("./src/app/app.component.html"),
             styles: [__webpack_require__("./src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [forms_1.FormBuilder, lfguild_service_1.LfguildService])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_2__services_lfguild_service__["a" /* LfguildService */]])
     ], AppComponent);
     return AppComponent;
 }());
-exports.AppComponent = AppComponent;
+
 
 
 /***/ }),
 
 /***/ "./src/app/app.module.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_animations__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/animations.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("./src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_material_module__ = __webpack_require__("./src/app/utils/material.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__result_table_result_table_component__ = __webpack_require__("./src/app/result-table/result-table.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_lfguild_service__ = __webpack_require__("./src/app/services/lfguild.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_clipboard_service__ = __webpack_require__("./src/app/services/clipboard.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var animations_1 = __webpack_require__("./node_modules/@angular/platform-browser/esm5/animations.js");
-var http_1 = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
-var app_component_1 = __webpack_require__("./src/app/app.component.ts");
-var material_module_1 = __webpack_require__("./src/app/utils/material.module.ts");
-var forms_1 = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
-var result_table_component_1 = __webpack_require__("./src/app/result-table/result-table.component.ts");
-var lfguild_service_1 = __webpack_require__("./src/app/services/lfguild.service.ts");
-var clipboard_service_1 = __webpack_require__("./src/app/services/clipboard.service.ts");
+
+
+
+
+
+
+
+
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        core_1.NgModule({
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["H" /* NgModule */])({
             declarations: [
-                app_component_1.AppComponent,
-                result_table_component_1.ResultTableComponent
+                __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_7__result_table_result_table_component__["a" /* ResultTableComponent */]
             ],
             imports: [
-                platform_browser_1.BrowserModule,
-                material_module_1.MyMaterialModule,
-                animations_1.BrowserAnimationsModule,
-                forms_1.ReactiveFormsModule,
-                forms_1.FormsModule,
-                http_1.HttpModule,
+                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_5__utils_material_module__["a" /* MyMaterialModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+                __WEBPACK_IMPORTED_MODULE_6__angular_forms__["k" /* ReactiveFormsModule */],
+                __WEBPACK_IMPORTED_MODULE_6__angular_forms__["f" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
             ],
             providers: [
-                lfguild_service_1.LfguildService,
-                clipboard_service_1.ClipboardService
+                __WEBPACK_IMPORTED_MODULE_8__services_lfguild_service__["a" /* LfguildService */],
+                __WEBPACK_IMPORTED_MODULE_9__services_clipboard_service__["a" /* ClipboardService */]
             ],
-            bootstrap: [app_component_1.AppComponent]
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
 }());
-exports.AppModule = AppModule;
+
 
 
 /***/ }),
@@ -202,10 +213,13 @@ module.exports = "<div class=\"mdl-grid\" style=\"margin-left: 8px\">\n  <mat-ex
 /***/ }),
 
 /***/ "./src/app/result-table/result-table.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResultTableComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_clipboard_service__ = __webpack_require__("./src/app/services/clipboard.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -215,21 +229,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var material_1 = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
-var clipboard_service_1 = __webpack_require__("./src/app/services/clipboard.service.ts");
+
+
+
 var ResultTableComponent = /** @class */ (function () {
     function ResultTableComponent(clipboardService) {
         this.clipboardService = clipboardService;
         this.displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp', 'export'];
-        this._dataSource = new material_1.MatTableDataSource([]);
+        this._dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["C" /* MatTableDataSource */]([]);
         this.ilvls = [950, 955, 960, 965, 970, 975, 980, 985, 990];
     }
     Object.defineProperty(ResultTableComponent.prototype, "dataSource", {
         set: function (value) {
             if (value) {
-                this._dataSource = new material_1.MatTableDataSource(value);
+                this._dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["C" /* MatTableDataSource */](value);
                 this.data = value;
                 this._dataSource.sort = this.sort;
                 this.classes = this.getClasses(value);
@@ -362,38 +375,40 @@ var ResultTableComponent = /** @class */ (function () {
         remove.forEach(function (r) {
             filtered = filtered.filter(function (obj) { return obj != r; });
         });
-        this._dataSource = new material_1.MatTableDataSource(filtered);
+        this._dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["C" /* MatTableDataSource */](filtered);
         this._dataSource.sort = this.sort;
     };
     __decorate([
-        core_1.ViewChild(material_1.MatSort),
-        __metadata("design:type", material_1.MatSort)
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["z" /* MatSort */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_material__["z" /* MatSort */])
     ], ResultTableComponent.prototype, "sort", void 0);
     __decorate([
-        core_1.Input('dataSource'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Input */])('dataSource'),
         __metadata("design:type", Array),
         __metadata("design:paramtypes", [Array])
     ], ResultTableComponent.prototype, "dataSource", null);
     ResultTableComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'app-result-table',
             template: __webpack_require__("./src/app/result-table/result-table.component.html"),
             styles: [__webpack_require__("./src/app/result-table/result-table.component.css")]
         }),
-        __metadata("design:paramtypes", [clipboard_service_1.ClipboardService])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_clipboard_service__["a" /* ClipboardService */]])
     ], ResultTableComponent);
     return ResultTableComponent;
 }());
-exports.ResultTableComponent = ResultTableComponent;
+
 
 
 /***/ }),
 
 /***/ "./src/app/services/clipboard.service.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClipboardService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -406,11 +421,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 // Import the core angular services.
-var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var core_2 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+
+
+
 var ClipboardService = /** @class */ (function () {
     // I initialize the Clipboard service.
     // --
@@ -456,22 +470,25 @@ var ClipboardService = /** @class */ (function () {
         }
     };
     ClipboardService = __decorate([
-        core_2.Injectable(),
-        __param(0, core_1.Inject(platform_browser_1.DOCUMENT)),
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["z" /* Injectable */])(),
+        __param(0, Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["y" /* Inject */])(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["b" /* DOCUMENT */])),
         __metadata("design:paramtypes", [Document])
     ], ClipboardService);
     return ClipboardService;
 }());
-exports.ClipboardService = ClipboardService;
+
 
 
 /***/ }),
 
 /***/ "./src/app/services/lfguild.service.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LfguildService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("./node_modules/rxjs/_esm5/Rx.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -481,10 +498,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var http_1 = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
-__webpack_require__("./node_modules/rxjs/_esm5/Rx.js");
+
+
+
 var LfguildService = /** @class */ (function () {
     function LfguildService(http) {
         this.http = http;
@@ -493,90 +509,91 @@ var LfguildService = /** @class */ (function () {
         return this.http.get('/api/getlfg?language=' + options.language + '&raidsPerWeek=' + options.raidsPerWeek + '&nrSites=' + options.nrSites + '&orderBy=' + options.orderBy).map(function (res) { return res.json(); });
     };
     LfguildService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
     ], LfguildService);
     return LfguildService;
 }());
-exports.LfguildService = LfguildService;
+
 
 
 /***/ }),
 
 /***/ "./src/app/utils/material.module.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyMaterialModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_cdk_table__ = __webpack_require__("./node_modules/@angular/cdk/esm5/table.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var material_1 = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
-var table_1 = __webpack_require__("./node_modules/@angular/cdk/esm5/table.es5.js");
+
+
+
 var MyMaterialModule = /** @class */ (function () {
     function MyMaterialModule() {
     }
     MyMaterialModule = __decorate([
-        core_1.NgModule({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["H" /* NgModule */])({
             exports: [
-                table_1.CdkTableModule,
-                material_1.MatAutocompleteModule,
-                material_1.MatButtonModule,
-                material_1.MatButtonToggleModule,
-                material_1.MatCardModule,
-                material_1.MatCheckboxModule,
-                material_1.MatChipsModule,
-                material_1.MatStepperModule,
-                material_1.MatDatepickerModule,
-                material_1.MatDialogModule,
-                material_1.MatExpansionModule,
-                material_1.MatGridListModule,
-                material_1.MatIconModule,
-                material_1.MatInputModule,
-                material_1.MatListModule,
-                material_1.MatMenuModule,
-                material_1.MatNativeDateModule,
-                material_1.MatPaginatorModule,
-                material_1.MatProgressBarModule,
-                material_1.MatProgressSpinnerModule,
-                material_1.MatRadioModule,
-                material_1.MatRippleModule,
-                material_1.MatSelectModule,
-                material_1.MatSidenavModule,
-                material_1.MatSliderModule,
-                material_1.MatSlideToggleModule,
-                material_1.MatSnackBarModule,
-                material_1.MatSortModule,
-                material_1.MatTableModule,
-                material_1.MatTabsModule,
-                material_1.MatToolbarModule,
-                material_1.MatTooltipModule
+                __WEBPACK_IMPORTED_MODULE_2__angular_cdk_table__["m" /* CdkTableModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MatAutocompleteModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["b" /* MatButtonModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["c" /* MatButtonToggleModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MatCardModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MatCheckboxModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MatChipsModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["B" /* MatStepperModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MatDatepickerModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatDialogModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatExpansionModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["j" /* MatGridListModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["k" /* MatIconModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["l" /* MatInputModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["m" /* MatListModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["n" /* MatMenuModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MatNativeDateModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["p" /* MatPaginatorModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["q" /* MatProgressBarModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["r" /* MatProgressSpinnerModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["s" /* MatRadioModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["t" /* MatRippleModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["u" /* MatSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["v" /* MatSidenavModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["x" /* MatSliderModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["w" /* MatSlideToggleModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["y" /* MatSnackBarModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["A" /* MatSortModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["D" /* MatTableModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["E" /* MatTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["F" /* MatToolbarModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["G" /* MatTooltipModule */]
             ]
         })
     ], MyMaterialModule);
     return MyMaterialModule;
 }());
-exports.MyMaterialModule = MyMaterialModule;
+
 
 
 /***/ }),
 
 /***/ "./src/environments/environment.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.environment = {
+var environment = {
     production: false
 };
 
@@ -584,19 +601,22 @@ exports.environment = {
 /***/ }),
 
 /***/ "./src/main.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__("./node_modules/@angular/platform-browser-dynamic/esm5/platform-browser-dynamic.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__("./src/app/app.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("./src/environments/environment.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var platform_browser_dynamic_1 = __webpack_require__("./node_modules/@angular/platform-browser-dynamic/esm5/platform-browser-dynamic.js");
-var app_module_1 = __webpack_require__("./src/app/app.module.ts");
-var environment_1 = __webpack_require__("./src/environments/environment.ts");
-if (environment_1.environment.production) {
-    core_1.enableProdMode();
+
+
+
+if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* enableProdMode */])();
 }
-platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule)
+Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });
 
 

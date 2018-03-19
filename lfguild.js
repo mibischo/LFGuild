@@ -151,7 +151,8 @@ module.exports = {
             let sort = orderBy == 'ts' ? '/sortby.ts' : '';
             let rpw = raidsPerWeek == 0 ? '' : raidsPerWeek;
 
-            for (var i=1; i<=nrSites ; i++) {
+            listCrawler.queue('https://www.wowprogress.com/gearscore/char_rating/prev/' + 1 +'/lfg.1/raids_week.' + raidsPerWeek + '/lang.' + language + sort);
+            for (var i=0; i<=nrSites - 2 ; i++) {
                 listCrawler.queue('https://www.wowprogress.com/gearscore/char_rating/next/' + i +'/lfg.1/raids_week.' + raidsPerWeek + '/lang.' + language + sort);
             }
     
