@@ -43,7 +43,15 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="mdl-cell mdl-cell-2-col"></div>
+      <div class="mdl-cell mdl-cell-2-col">
+        <mat-form-field class="my-form-field">
+          <mat-select placeholder="minimales ILvl" [(value)]="selectedIlvl" (selectionChange)="onFilter()">
+            <mat-option *ngFor="let l of ilvls" [value]="l">
+              {{ l }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
       <div class="mdl-cell mdl-cell-2-col"></div>
     </div>
   </mat-expansion-panel>

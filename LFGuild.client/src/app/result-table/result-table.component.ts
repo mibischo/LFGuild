@@ -17,11 +17,13 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
   servers: string[];
   transfer: string[];
   specs: string[];
+  ilvls: number[] = [ 950, 955, 960, 965, 970, 975, 980, 985, 990 ];
 
   selectedServers;
   selectedClasses;
   selectedTransfer;
   selectedSpecs;
+  selectedIlvl;
   
   @ViewChild(MatSort) sort: MatSort;
 
@@ -152,6 +154,18 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
             rem = false;
           }
         });
+
+        if (rem) {
+          remove.push(d);
+        }
+      }
+
+      if (this.selectedIlvl) {
+        let rem = true;
+
+        if (+d.ilvl > this.selectedIlvl) {
+          rem = false;
+        }
 
         if (rem) {
           remove.push(d);
