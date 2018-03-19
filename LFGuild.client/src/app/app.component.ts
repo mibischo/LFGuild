@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { LfguildService } from './services/lfguild.service';
 import { Observable } from 'rxjs';
+import { MatSlideToggleChange } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -40,8 +41,15 @@ export class AppComponent implements OnInit{
     { value: 10, label: '10' },
   ];
 
+  minutes = [ 1, 3, 5, 10, 15, 20, 25, 30];
+
   optionsForm: FormGroup;
   data: Observable<any[]>;
+  selectedReloadInterval: number = 5;
+  reloadTimer: any;
+  reloadChecked: boolean = false;
+  lastUpdate: Date;
+  isLoading: boolean = false;
 
   constructor(private fb: FormBuilder, private lfgService: LfguildService) {
     this.buildForm();
@@ -62,6 +70,24 @@ export class AppComponent implements OnInit{
   }
 
   startScan() {
+    console.log("loading data");
+    this.lastUpdate = new Date();
+    this.isLoading = true;
     this.data = this.lfgService.get(this.optionsForm.value);
+    this.data.subscribe(() => {
+      this.isLoading = false;
+    })
+  }
+
+  onReloadChange(change: MatSlideToggleChange) {
+    if (change.checked) {
+      console.log("reload scheduled")
+      this.reloadTimer = setInterval(() => { 
+        this.startScan();
+      }, this.selectedReloadInterval * 60 * 1000); //this.selectedReloadInterval * 60 * 1000);
+    } else {
+      console.log("reload cancled")
+      clearInterval(this.reloadTimer);
+    }
   }
 }

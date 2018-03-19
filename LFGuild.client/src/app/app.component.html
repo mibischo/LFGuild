@@ -43,9 +43,25 @@
       </div>
     </form>
   </div>
-<div class="mdl-grid mdl-cell mdl-cell--12-col">
-  <button mat-raised-button color="primary" style="margin-left: 8px" (click)="startScan()">WowProgress neu laden</button>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--1-col">
+    <button mat-raised-button color="primary" style="margin-left: 8px" (click)="startScan()">WowProgress neu laden</button>  
+  </div>
+  <div class="mdl-cell mdl-cell--11-col">
+    automatisch nachladen in &nbsp;
+    <mat-form-field style="width: 50px">
+      <mat-select [(value)]="selectedReloadInterval">
+        <mat-option *ngFor="let m of minutes" [value]="m">
+          {{ m }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp; Minuten &nbsp;<mat-slide-toggle (change)="onReloadChange($event)"></mat-slide-toggle>
+    &nbsp; letztes Update: {{ lastUpdate | date:'HH:mm:ss' }}
+  </div>
 </div>
+<mat-progress-bar *ngIf="isLoading" class="progress-bar" mode="indeterminate"></mat-progress-bar>
+
 
 <!-- <div class="mdl-grid mdl-cell mdl-cell--12-col"> -->
   <app-result-table style="width: 100%" [dataSource]="data | async"></app-result-table>

@@ -20,14 +20,14 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /***/ "./src/app/app.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".progress-bar {\r\n    width: 100%;\r\n    margin-top: 8px;\r\n    margin-bottom: 8px;\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class=\"mat-elevation-z6\" color=\"primary\">\n  <span><strong>LFGuild</strong></span>\n</mat-toolbar>\n<div class=\"mdl-grid\">\n    <form [formGroup]=\"optionsForm\" class=\"mdl-grid\" style=\"width: 100%\">\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"language\" placeholder=\"Sprache\">\n            <mat-option *ngFor=\"let l of languages\" [value]=\"l.value\">\n              {{ l.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"raidsPerWeek\" placeholder=\"Raids pro Woche\">\n            <mat-option *ngFor=\"let rpw of raidsPerWeek\" [value]=\"rpw.value\">\n              {{ rpw.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"nrSites\" placeholder=\"Anz. Seiten die gescannt werden\">\n            <mat-option *ngFor=\"let ns of nrSites\" [value]=\"ns.value\">\n              {{ ns.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\" style=\"padding-top: 16px\"> \n        <div class=\"my-form-field\">\n          <span style=\"margin-right: 16px;\">ordnen nach:</span>\n          <mat-radio-group formControlName=\"orderBy\">\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"ts\">Zeit</mat-radio-button>\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"sc\">Score</mat-radio-button>\n          </mat-radio-group>\n        </div>\n      </div>\n      <div class=\"mdl-cell mdl-cell--4-col\" style=\"padding-top: 16px\">\n      </div>\n    </form>\n  </div>\n<div class=\"mdl-grid mdl-cell mdl-cell--12-col\">\n  <button mat-raised-button color=\"primary\" style=\"margin-left: 8px\" (click)=\"startScan()\">WowProgress neu laden</button>\n</div>\n\n<!-- <div class=\"mdl-grid mdl-cell mdl-cell--12-col\"> -->\n  <app-result-table style=\"width: 100%\" [dataSource]=\"data | async\"></app-result-table>\n<!-- </div> -->"
+module.exports = "<mat-toolbar class=\"mat-elevation-z6\" color=\"primary\">\n  <span><strong>LFGuild</strong></span>\n</mat-toolbar>\n<div class=\"mdl-grid\">\n    <form [formGroup]=\"optionsForm\" class=\"mdl-grid\" style=\"width: 100%\">\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"language\" placeholder=\"Sprache\">\n            <mat-option *ngFor=\"let l of languages\" [value]=\"l.value\">\n              {{ l.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"raidsPerWeek\" placeholder=\"Raids pro Woche\">\n            <mat-option *ngFor=\"let rpw of raidsPerWeek\" [value]=\"rpw.value\">\n              {{ rpw.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"nrSites\" placeholder=\"Anz. Seiten die gescannt werden\">\n            <mat-option *ngFor=\"let ns of nrSites\" [value]=\"ns.value\">\n              {{ ns.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\" style=\"padding-top: 16px\"> \n        <div class=\"my-form-field\">\n          <span style=\"margin-right: 16px;\">ordnen nach:</span>\n          <mat-radio-group formControlName=\"orderBy\">\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"ts\">Zeit</mat-radio-button>\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"sc\">Score</mat-radio-button>\n          </mat-radio-group>\n        </div>\n      </div>\n      <div class=\"mdl-cell mdl-cell--4-col\" style=\"padding-top: 16px\">\n      </div>\n    </form>\n  </div>\n<div class=\"mdl-grid\">\n  <div class=\"mdl-cell mdl-cell--1-col\">\n    <button mat-raised-button color=\"primary\" style=\"margin-left: 8px\" (click)=\"startScan()\">WowProgress neu laden</button>  \n  </div>\n  <div class=\"mdl-cell mdl-cell--11-col\">\n    automatisch nachladen in &nbsp;\n    <mat-form-field style=\"width: 50px\">\n      <mat-select [(value)]=\"selectedReloadInterval\">\n        <mat-option *ngFor=\"let m of minutes\" [value]=\"m\">\n          {{ m }}\n        </mat-option>\n      </mat-select>\n    </mat-form-field>\n    &nbsp; Minuten &nbsp;<mat-slide-toggle (change)=\"onReloadChange($event)\"></mat-slide-toggle>\n    &nbsp; letztes Update: {{ lastUpdate | date:'HH:mm:ss' }}\n  </div>\n</div>\n<mat-progress-bar *ngIf=\"isLoading\" class=\"progress-bar\" mode=\"indeterminate\"></mat-progress-bar>\n\n\n<!-- <div class=\"mdl-grid mdl-cell mdl-cell--12-col\"> -->\n  <app-result-table style=\"width: 100%\" [dataSource]=\"data | async\"></app-result-table>\n<!-- </div> -->"
 
 /***/ }),
 
@@ -80,6 +80,10 @@ var AppComponent = /** @class */ (function () {
             { value: 9, label: '9' },
             { value: 10, label: '10' },
         ];
+        this.minutes = [1, 3, 5, 10, 15, 20, 25, 30];
+        this.selectedReloadInterval = 5;
+        this.reloadChecked = false;
+        this.isLoading = false;
         this.buildForm();
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -93,7 +97,27 @@ var AppComponent = /** @class */ (function () {
         this.optionsForm = new forms_1.FormGroup(group);
     };
     AppComponent.prototype.startScan = function () {
+        var _this = this;
+        console.log("loading data");
+        this.lastUpdate = new Date();
+        this.isLoading = true;
         this.data = this.lfgService.get(this.optionsForm.value);
+        this.data.subscribe(function () {
+            _this.isLoading = false;
+        });
+    };
+    AppComponent.prototype.onReloadChange = function (change) {
+        var _this = this;
+        if (change.checked) {
+            console.log("reload scheduled");
+            this.reloadTimer = setInterval(function () {
+                _this.startScan();
+            }, this.selectedReloadInterval * 60 * 1000); //this.selectedReloadInterval * 60 * 1000);
+        }
+        else {
+            console.log("reload cancled");
+            clearInterval(this.reloadTimer);
+        }
     };
     AppComponent = __decorate([
         core_1.Component({
@@ -212,6 +236,7 @@ var ResultTableComponent = /** @class */ (function () {
                 this.servers = this.getServers(value);
                 this.transfer = this.getTransfers(value);
                 this.specs = this.getSpecs(value);
+                this.onFilter();
             }
         },
         enumerable: true,

@@ -37,6 +37,8 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
       this.servers = this.getServers(value);
       this.transfer = this.getTransfers(value);
       this.specs = this.getSpecs(value);
+
+      this.onFilter();
     }
   };
 
