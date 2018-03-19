@@ -46,6 +46,10 @@
     background-color: rgba(199, 156, 110, 0.8);
 }
 
+.faction-column {
+    flex: 0.3;
+}
+
 .name-column {
     flex: 0.7;
 }

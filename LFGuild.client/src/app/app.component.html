@@ -4,7 +4,7 @@
 <div class="mdl-grid">
     <form [formGroup]="optionsForm" class="mdl-grid" style="width: 100%">
       <div class="mdl-cell mdl-cell--2-col">
-        <mat-form-field>
+        <mat-form-field class="my-form-field">
           <mat-select formControlName="language" placeholder="Sprache">
             <mat-option *ngFor="let l of languages" [value]="l.value">
               {{ l.label }}
@@ -13,7 +13,7 @@
         </mat-form-field>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mat-form-field>
+        <mat-form-field class="my-form-field">
           <mat-select formControlName="raidsPerWeek" placeholder="Raids pro Woche">
             <mat-option *ngFor="let rpw of raidsPerWeek" [value]="rpw.value">
               {{ rpw.label }}
@@ -22,7 +22,7 @@
         </mat-form-field>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mat-form-field>
+        <mat-form-field class="my-form-field">
           <mat-select formControlName="nrSites" placeholder="Anz. Seiten die gescannt werden">
             <mat-option *ngFor="let ns of nrSites" [value]="ns.value">
               {{ ns.label }}
@@ -31,11 +31,13 @@
         </mat-form-field>
       </div>
       <div class="mdl-cell mdl-cell--2-col" style="padding-top: 16px"> 
+        <div class="my-form-field">
           <span style="margin-right: 16px;">ordnen nach:</span>
           <mat-radio-group formControlName="orderBy">
             <mat-radio-button style="margin-right: 8px;" value="ts">Zeit</mat-radio-button>
             <mat-radio-button style="margin-right: 8px;" value="sc">Score</mat-radio-button>
           </mat-radio-group>
+        </div>
       </div>
       <div class="mdl-cell mdl-cell--4-col" style="padding-top: 16px">
       </div>

@@ -24,15 +24,22 @@ module.exports = {
                         var pveScore = '';
                         var mPlusScore = '';
                         var languageStartIndex = 0;
-    
+                        var guild = '';
+                        var guildlink = '';
+                        var faction = '';
+                        var armory = '';
+
                         if ($('div.primary').children()[4].children[0].children.length > 7) {
                             race = $('div.primary').children()[4].children[0].children[3].next.next.children[0].data.trim();
                             clazz = $('div.primary').children()[4].children[0].children[3].next.next.children[0].next.children[0].data.trim();
+                            guild = $('a.guild').children()[0].children[0].data.trim();
+                            faction = $('a.guild').attr('class').replace('guild ', '').trim();
+                            guildlink = $('a.guild').attr('href').trim();
                         } else {
                             race = $('div.primary').children()[4].children[0].children[2].next.children[0].data.trim();
                             clazz = $('div.primary').children()[4].children[0].children[2].next.children[0].next.children[0].data.trim();
                         }
-    
+
                         try {
                             if ($('div.primary').children('h2')[0].children[0].data.includes('PvE Score:')) {
                                 pveScore = $('div.primary').children('h2')[0].children[0].data.replace('PvE Score: ', '').trim();
@@ -41,11 +48,13 @@ module.exports = {
                         try {
                             mPlusScore = $('div.primary').find('div.gearscore')[1].children[1].next.data.replace(': ', '').trim();
                         } catch(ex) {}
-    
+
                         if ($('span.profileBattletag').length > 0) {
                             battletag = $('span.profileBattletag')[0].children[0].data;	
                             languageStartIndex++;				
                         }
+                        
+                        armory = $('a.armoryLink').attr('href').trim();
                         
                         for (var i=languageStartIndex; i < $('div.language').length; i++) {
                             if ($('div.language')[i].children.length) {
@@ -63,6 +72,25 @@ module.exports = {
                                 }
                             }
                         }
+
+                        switch(race) {
+                            case 'human':
+                            case 'dwarf':
+                            case 'night elf':
+                            case 'gnome':
+                            case 'draenei':
+                            case 'worgen': {
+                                faction = 'alliance';
+                            } break;
+                            case 'orc':
+                            case 'undead':
+                            case 'tauren':
+                            case 'troll':
+                            case 'blood elf':
+                            case 'goblin': {
+                                faction = 'horde';
+                            }
+                        }
     
                         var details = {
                             race: race,
@@ -74,7 +102,11 @@ module.exports = {
                             //mPlus: mPlus,
                             specs: specs,
                             pveScore: pveScore,
-                            mPlusScore: mPlusScore
+                            mPlusScore: mPlusScore,
+                            guild: guild,
+                            guildlink: guildlink,
+                            faction: faction,
+                            armory: armory
                         };
     
                         chars[res.options.parameter1] = Object.assign({}, chars[res.options.parameter1], details);

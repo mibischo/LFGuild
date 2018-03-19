@@ -10,7 +10,7 @@ import { MatSort, MatTableDataSource } from '@angular/material';
 })
 export class ResultTableComponent implements OnInit, AfterViewInit {
 
-  displayedColumns = ['name', 'server', 'ilvl', 'charlink', 'logs', 'timestamp', 'race', 'class', 'battletag', 'languages', 'transfer', 'raidsPerWeek', 'specs', 'pveScore', 'mPlusScore'];
+  displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp'];
   _dataSource = new MatTableDataSource([]);
   data: any[];
   classes: string[];

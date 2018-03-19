@@ -8,7 +8,7 @@
 
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--2-col">
-        <mat-form-field>
+        <mat-form-field class="my-form-field">
           <mat-select placeholder="Server" [(value)]="selectedServers" (selectionChange)="onFilter()" multiple>
             <mat-option *ngFor="let s of servers" [value]="s">
               {{ s }}
@@ -17,7 +17,7 @@
         </mat-form-field>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mat-form-field>
+        <mat-form-field class="my-form-field">
           <mat-select placeholder="Klasse" [(value)]="selectedClasses" (selectionChange)="onFilter()" multiple>
             <mat-option *ngFor="let c of classes" [value]="c">
               {{ c }}
@@ -26,7 +26,7 @@
         </mat-form-field>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mat-form-field>
+        <mat-form-field class="my-form-field">
           <mat-select placeholder="Transfer" [(value)]="selectedTransfer" (selectionChange)="onFilter()" multiple>
             <mat-option *ngFor="let t of transfer" [value]="t">
               {{ t }}
@@ -35,7 +35,7 @@
         </mat-form-field>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mat-form-field>
+        <mat-form-field class="my-form-field">
           <mat-select placeholder="Specs" [(value)]="selectedSpecs" (selectionChange)="onFilter()" multiple>
             <mat-option *ngFor="let s of specs" [value]="s">
               {{ s }}
@@ -55,6 +55,14 @@
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
 
+      <ng-container matColumnDef="faction">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="faction-column"> <b>Faction</b> </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="faction-column">
+          <img *ngIf="row.faction == 'horde'" src="assets/wow-horde-icon.png" width="24px">
+          <img *ngIf="row.faction == 'alliance'" src="assets/wow-alliance-icon.png" width="24px">
+        </mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="name-column"> <b>Name</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="name-column"> {{row.name}} </mat-cell>
@@ -70,14 +78,20 @@
           <mat-cell *matCellDef="let row" class="ilvl-column"> {{row.ilvl }} </mat-cell>
         </ng-container>
 
-      <ng-container matColumnDef="charlink">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="charlink-column"> <b>WoWProgress</b> </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="charlink-column" style="text-align: center;"> <a href="https://www.wowprogress.com{{row.charlink}}" target="_blank"><img width="24px" src="favicon.ico"></a> </mat-cell>
+      <ng-container matColumnDef="guild">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="guild-column"> <b>Guild</b> </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="guild-column"> 
+          <a href="https://www.wowprogress.com{{row.guildlink}}" target="_blank"><b>{{row.guild}}</b></a> 
+        </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="logs">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="charlink-column"> <b>Logs</b> </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="charlink-column" style="text-align: center;"> <a href="https://www.warcraftlogs.com{{row.charlink}}" target="_blank"><img width="24px" src="assets/warcraftlogs-icon.png"></a> </mat-cell>
+      <ng-container matColumnDef="charlink">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="charlink-column"> <b>Links</b> </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="charlink-column"> 
+          <a href="https://www.wowprogress.com{{row.charlink}}" target="_blank"><img width="24px" src="favicon.ico"></a> 
+          <a href="https://www.warcraftlogs.com{{row.charlink}}" target="_blank"><img width="24px" src="assets/warcraftlogs-icon.png"></a>
+          <a href="{{row.armory}}" target="_blank"><img width="24px" src="assets/wow-icon.png"></a>
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="timestamp">
@@ -85,15 +99,15 @@
         <mat-cell *matCellDef="let row" class="timestamp-column">{{row.timestamp | date: 'MMM d, y, HH:mm:ss'}}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="race">
+      <!-- <ng-container matColumnDef="race">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="race-column"> <b>Volk</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="race-column">{{row.race }}</mat-cell>
-      </ng-container>
+      </ng-container> -->
 
-      <ng-container matColumnDef="class">
+      <!-- <ng-container matColumnDef="class">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="class-column"> <b>Klasse</b> </mat-header-cell>
         <mat-cell *matCellDef="let row" class="class-column">{{row.clazz }}</mat-cell>
-      </ng-container>
+      </ng-container> -->
 
       <ng-container matColumnDef="battletag">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="battletag-column"> <b>Battletag</b> </mat-header-cell>

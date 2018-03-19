@@ -4,3 +4,7 @@
 body {
     margin: 0px;
 }
+
+.my-form-field {
+    width: 100%;
+}
