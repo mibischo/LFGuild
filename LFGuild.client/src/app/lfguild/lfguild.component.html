@@ -1,0 +1,67 @@
+<div class="mdl-grid">
+    <form [formGroup]="optionsForm" class="mdl-grid" style="width: 100%">
+      <div class="mdl-cell mdl-cell--2-col">
+        <mat-form-field class="my-form-field">
+          <mat-select formControlName="language" placeholder="Sprache">
+            <mat-option *ngFor="let l of languages" [value]="l.value">
+              {{ l.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mat-form-field class="my-form-field">
+          <mat-select formControlName="raidsPerWeek" placeholder="Raids pro Woche">
+            <mat-option *ngFor="let rpw of raidsPerWeek" [value]="rpw.value">
+              {{ rpw.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mat-form-field class="my-form-field">
+          <mat-select formControlName="nrSites" placeholder="Anz. Seiten die gescannt werden">
+            <mat-option *ngFor="let ns of nrSites" [value]="ns.value">
+              {{ ns.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col" style="padding-top: 16px"> 
+        <div class="my-form-field">
+          <span style="margin-right: 16px;">ordnen nach:</span>
+          <mat-radio-group formControlName="orderBy">
+            <mat-radio-button style="margin-right: 8px;" value="ts">Zeit</mat-radio-button>
+            <mat-radio-button style="margin-right: 8px;" value="sc">Score</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="mdl-cell mdl-cell--4-col" style="padding-top: 16px">
+      </div>
+    </form>
+  </div>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <button mat-raised-button color="primary" style="margin-left: 8px" (click)="startScan()">WowProgress neu laden</button>  
+    &nbsp; automatisch nachladen in &nbsp;
+    <mat-form-field style="width: 50px">
+      <mat-select [(value)]="selectedReloadInterval">
+        <mat-option *ngFor="let m of minutes" [value]="m">
+          {{ m }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp; Minuten &nbsp;<mat-slide-toggle (change)="onReloadChange($event)"></mat-slide-toggle>
+    &nbsp; letztes Update: {{ lastUpdate | date:'HH:mm:ss' }}
+  </div>
+</div>
+<mat-progress-bar *ngIf="isLoading" class="progress-bar" mode="indeterminate"></mat-progress-bar>
+
+
+<!-- <div class="mdl-grid mdl-cell mdl-cell--12-col"> -->
+  <app-result-table style="width: 100%" [dataSource]="data | async" (save)="onSave($event)">
+    <!-- <ng-template #actionColumn let-row>
+      <button mat-icon-button (click)="onSave(row)"><mat-icon>save</mat-icon></button>
+    </ng-template> -->
+  </app-result-table>
+<!-- </div> -->
