@@ -48,17 +48,39 @@ module.exports = {
                         } catch(ex) {}
 
                         try {
-                            mPlusScore = $('div.primary').find('div.gearscore')[1].children[1].next.data.replace(': ', '').trim();
+                            let arr = Object.keys($('div.primary').find('div.gearscore')).map(key => $('div.primary').find('div.gearscore')[key])
+                            arr.forEach(gs => {
+                                // console.log(gs);
+                                if (gs.children[0].data.includes('Item Level:')) {
+                                    ilvl = gs.children[0].data.replace('Item Level: ', '').trim();
+                                } else if (gs.children[0].data.includes('Mythic+ Score')) {
+                                    mPlusScore = gs.children[1].next.data.replace(': ', '').trim();
+                                }
+                            });
                         } catch(ex) {}
+                        // console.log(Object.keys($('div.primary').find('div.gearscore')).map(key => $('div.primary').find('div.gearscore')[key]));
+                        // console.log(ilvl);
+                        // console.log(mPlusScore);
+
+                        // try {
+                        //     mPlusScore = $('div.primary').find('div.gearscore')[1].children[1].next.data.replace(': ', '').trim();
+                        // } catch(ex) {}
 
                         if ($('span.profileBattletag').length > 0) {
                             battletag = $('span.profileBattletag')[0].children[0].data;	
                             languageStartIndex++;				
                         }
 
-                        try {
-                            ilvl = $('div.primary').find('div.gearscore')[2].children[0].data.replace('Item Level: ', '').trim();
-                        } catch(ec) {}
+                        // try {
+                        //     let pos = 0;
+
+                        //     if ($('div.primary').find('div.gearscore').length > 6) {
+                        //         pos = 2;
+                        //     }
+
+                        //     console.log($('div.primary').find('div.gearscore')[pos].children[0].data.replace('Item Level: ', '').trim());
+                        //     ilvl = $('div.primary').find('div.gearscore')[pos].children[0].data.replace('Item Level: ', '').trim();
+                        // } catch(ec) {}
                         
                         armory = $('a.armoryLink').attr('href').trim();
                         
