@@ -93,3 +93,7 @@
 .export-column {
     flex: 0.2;
 }
+
+.save-column {
+    flex: 0.2;
+}

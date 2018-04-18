@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { LfguildService } from './services/lfguild.service';
 import { Observable } from 'rxjs';
 import { MatSlideToggleChange } from '@angular/material';
+import { CharacterService } from './services/character.service';
 
 @Component({
   selector: 'app-root',
@@ -51,7 +52,7 @@ export class AppComponent implements OnInit{
   lastUpdate: Date;
   isLoading: boolean = false;
 
-  constructor(private fb: FormBuilder, private lfgService: LfguildService) {
+  constructor(private fb: FormBuilder, private lfgService: LfguildService, private characterService: CharacterService) {
     this.buildForm();
   }
 
@@ -89,5 +90,9 @@ export class AppComponent implements OnInit{
       console.log("reload cancled")
       clearInterval(this.reloadTimer);
     }
+  }
+
+  onSave(character: any) {
+    this.characterService.post(character);
   }
 }

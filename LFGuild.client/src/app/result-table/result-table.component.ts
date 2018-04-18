@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, Output, EventEmitter, ContentChild, TemplateRef } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { testdata } from './testdata';
 import { MatSort, MatTableDataSource } from '@angular/material';
@@ -11,7 +11,7 @@ import { ClipboardService } from '../services/clipboard.service';
 })
 export class ResultTableComponent implements OnInit, AfterViewInit {
 
-  displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp', 'export'];
+  displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp', 'export', 'save'];
   _dataSource = new MatTableDataSource([]);
   data: any[];
   classes: string[];
@@ -27,6 +27,7 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
   selectedIlvl;
   
   @ViewChild(MatSort) sort: MatSort;
+  @ContentChild('actionColumn') actionColumnTmpl: TemplateRef<any>;
 
   @Input('dataSource') set dataSource(value: any[]) {
     if (value) {
@@ -41,6 +42,8 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
       this.onFilter();
     }
   };
+
+  @Output() save = new EventEmitter();
 
   constructor(private clipboardService: ClipboardService) { }
 
@@ -109,6 +112,7 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
     text += row.name + ' ' + row.server + ' \n';
     text += row.clazz + ' ' + row.specs + ' \n';
     text += row.transfer + ' \n';
+    text += 'Battletag: ' + row.battletag + ' \n';
     text += 'PvE Score: ' + row.pveScore + ' \n';
     text += 'M+ Score: ' + row.mPlusScore + ' \n';
     text += 'Gilde: https://www.wowprogress.com' + row.guildlink + ' \n';

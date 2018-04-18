@@ -157,6 +157,13 @@
         <mat-cell *matCellDef="let row" class="export-column"><button mat-icon-button (click)="copyToClipboard(row)"><mat-icon>content_copy</mat-icon></button></mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="save">
+        <mat-header-cell *matHeaderCellDef class="save-column"></mat-header-cell>
+        <mat-cell *matCellDef="let row" class="save-column">
+          <ng-container *ngTemplateOutlet="actionColumnTmpl, context: { $implicit: row }"></ng-container>
+        </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row [ngClass]="'class-'+row.clazz.replace(' ', '')" *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>

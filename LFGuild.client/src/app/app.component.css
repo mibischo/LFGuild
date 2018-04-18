@@ -3,3 +3,29 @@
     margin-top: 8px;
     margin-bottom: 8px;
 }
+
+.header-navigation {
+    display: table-row;
+    margin-right:auto;
+    align-items:left;
+    padding-top: 0 !important;
+    height: 100%;
+}
+
+.nav-link {
+    display: table-cell !important;
+    list-style-type: none;
+    vertical-align: middle;
+    line-height: 100%;
+    font-weight: 600;
+    font-size: 1.5rem !important;
+    height: 64px;
+    padding-left: 16px;
+    padding-right: 16px;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-link-active {
+    color: #f6680e;
+}

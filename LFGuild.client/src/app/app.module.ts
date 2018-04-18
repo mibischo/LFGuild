@@ -10,12 +10,16 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ResultTableComponent } from './result-table/result-table.component';
 import { LfguildService } from './services/lfguild.service';
 import { ClipboardService } from './services/clipboard.service';
+import { CharacterService } from './services/character.service';
+import { AppRoutingModule } from './app.routing.module';
+import { LfguildComponent } from './lfguild/lfguild.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ResultTableComponent
+    ResultTableComponent,
+    LfguildComponent
   ],
   imports: [
     BrowserModule,
@@ -24,10 +28,14 @@ import { ClipboardService } from './services/clipboard.service';
     ReactiveFormsModule,
     FormsModule,
     HttpModule,
+
+
+    AppRoutingModule
   ],
   providers: [
     LfguildService,
-    ClipboardService
+    ClipboardService,
+    CharacterService
   ],
   bootstrap: [AppComponent]
 })
