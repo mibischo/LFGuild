@@ -8,10 +8,10 @@ module.exports = (app) => {
     app.get('/api/characters', characters.findAll);
 
     // Retrieve a single character with characterId
-    app.get('/api/characters/:characterId', characters.findOne);
+    app.get('/api/characters/:hash', characters.findOne);
 
     // Update a character with characterId
-    app.put('/api/characters/:characterId', characters.update);
+    app.put('/api/characters/:hash', characters.update);
 
     // Delete a character with characterId
     app.delete('/api/characters/:characterId', characters.delete);
