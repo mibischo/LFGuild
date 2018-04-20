@@ -34,7 +34,8 @@ exports.create = (req, res) => {
         guild: req.body.guild,
         guildlink: req.body.guildlink,
         faction: req.body.faction,
-        armory: req.body.armory
+        armory: req.body.armory,
+        status: 'Neu'
     });
 
     console.log(character);

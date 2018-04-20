@@ -97,3 +97,7 @@
 .save-column {
     flex: 0.2;
 }
+
+.hidden-row {
+    display: none;
+}

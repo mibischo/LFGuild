@@ -17,8 +17,11 @@ export class CharacterService {
 
   post(character: any) {
     console.log('saving character');
-    console.log(JSON.stringify(character));
     return this.http.post('/api/characters', JSON.stringify(character), this.options).subscribe();
   }
 
+  delete(character: any) {
+    console.log('deleting character');
+    return this.http.delete('/api/characters/' + character.hash).subscribe();
+  }
 }

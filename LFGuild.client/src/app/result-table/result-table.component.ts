@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, Output, EventEmitter, ContentChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, Output, EventEmitter, ContentChild, TemplateRef, AfterContentInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { testdata } from './testdata';
 import { MatSort, MatTableDataSource } from '@angular/material';
@@ -9,9 +9,9 @@ import { ClipboardService } from '../services/clipboard.service';
   templateUrl: './result-table.component.html',
   styleUrls: ['./result-table.component.css']
 })
-export class ResultTableComponent implements OnInit, AfterViewInit {
+export class ResultTableComponent implements OnInit, AfterViewInit, AfterContentInit {
 
-  displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp', 'export', 'save'];
+  displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp', 'export', 'extraCol1', 'extraCol2', 'extraCol3'];
   _dataSource = new MatTableDataSource([]);
   data: any[];
   classes: string[];
@@ -27,7 +27,9 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
   selectedIlvl;
   
   @ViewChild(MatSort) sort: MatSort;
-  @ContentChild('actionColumn') actionColumnTmpl: TemplateRef<any>;
+  @ContentChild('extraColumn1') extraColumn1Tmpl: TemplateRef<any>;
+  @ContentChild('extraColumn2') extraColumn2Tmpl: TemplateRef<any>;
+  @ContentChild('extraColumn2') extraColumn3Tmpl: TemplateRef<any>;
 
   @Input('dataSource') set dataSource(value: any[]) {
     if (value) {
@@ -48,10 +50,26 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
   constructor(private clipboardService: ClipboardService) { }
 
   ngOnInit() {
+    
   }
 
   ngAfterViewInit(): void {
-    this._dataSource.sort = this.sort;
+    this._dataSource.sort = this.sort;    
+  }
+
+  ngAfterContentInit(): void {
+  }
+
+  hideExtraColumn1() {
+    return this.extraColumn1Tmpl == undefined;
+  }
+
+  hideExtraColumn2() {
+    return this.extraColumn2Tmpl == undefined;
+  }
+
+  hideExtraColumn3() {
+    return this.extraColumn3Tmpl == undefined;
   }
 
   getClasses(result: any[]) {
