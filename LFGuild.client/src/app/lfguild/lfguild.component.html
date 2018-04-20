@@ -60,8 +60,8 @@
 
 <!-- <div class="mdl-grid mdl-cell mdl-cell--12-col"> -->
   <app-result-table style="width: 100%" [dataSource]="data | async" (save)="onSave($event)">
-    <!-- <ng-template #actionColumn let-row>
+    <ng-template #actionColumn let-row>
       <button mat-icon-button (click)="onSave(row)"><mat-icon>save</mat-icon></button>
-    </ng-template> -->
+    </ng-template>
   </app-result-table>
 <!-- </div> -->

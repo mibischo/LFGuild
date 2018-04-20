@@ -91,6 +91,7 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
   }
 
   getSpecs(result: any[]) {
+      console.log(result);
     let res: string[] = new Array();
 
     result.forEach(r => {

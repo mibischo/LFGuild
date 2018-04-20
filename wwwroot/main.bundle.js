@@ -20,14 +20,14 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /***/ "./src/app/app.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".progress-bar {\r\n    width: 100%;\r\n    margin-top: 8px;\r\n    margin-bottom: 8px;\r\n}\r\n\r\n.header-navigation {\r\n    display: table-row;\r\n    margin-right:auto;\r\n    -webkit-box-align:left;\r\n        -ms-flex-align:left;\r\n            align-items:left;\r\n    padding-top: 0 !important;\r\n    height: 100%;\r\n}\r\n\r\n.nav-link {\r\n    display: table-cell !important;\r\n    list-style-type: none;\r\n    vertical-align: middle;\r\n    line-height: 100%;\r\n    font-weight: 600;\r\n    font-size: 1.5rem !important;\r\n    height: 64px;\r\n    padding-left: 16px;\r\n    padding-right: 16px;\r\n    text-decoration: none;\r\n    color: white;\r\n}\r\n\r\n.nav-link-active {\r\n    color: #f6680e;\r\n}"
+module.exports = ".progress-bar {\n    width: 100%;\n    margin-top: 8px;\n    margin-bottom: 8px;\n}\n\n.header-navigation {\n    display: table-row;\n    margin-right:auto;\n    -webkit-box-align:left;\n        -ms-flex-align:left;\n            align-items:left;\n    padding-top: 0 !important;\n    height: 100%;\n}\n\n.nav-link {\n    display: table-cell !important;\n    list-style-type: none;\n    vertical-align: middle;\n    line-height: 100%;\n    font-weight: 600;\n    font-size: 1.5rem !important;\n    height: 64px;\n    padding-left: 16px;\n    padding-right: 16px;\n    text-decoration: none;\n    color: white;\n}\n\n.nav-link-active {\n    color: #f6680e;\n}"
 
 /***/ }),
 
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class=\"mat-elevation-z6\" color=\"primary\">\n  <mat-list class=\"header-navigation\">\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\" routerLink=\"lfguild\"><strong>LFGuild</strong></a>\n    <!-- <a class=\"nav-link\" routerLinkActive=\"nav-link-active\">Markiert</a>\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\">Anschreiben</a>\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\">Testraid</a>\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\">wurde Abgelehnt</a>\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\">hat Abgelehnt</a>\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\">Alle</a> -->\n  </mat-list>\n</mat-toolbar>\n<router-outlet></router-outlet>"
+module.exports = "<mat-toolbar class=\"mat-elevation-z6\" color=\"primary\">\n  <mat-list class=\"header-navigation\">\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\" routerLink=\"lfguild\"><strong>LFGuild</strong></a>\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\" routerLink=\"character\">Markiert</a>\n    <!-- <a class=\"nav-link\" routerLinkActive=\"nav-link-active\">Anschreiben</a>\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\">Testraid</a>\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\">wurde Abgelehnt</a>\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\">hat Abgelehnt</a>\n    <a class=\"nav-link\" routerLinkActive=\"nav-link-active\">Alle</a> -->\n  </mat-list>\n</mat-toolbar>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -164,6 +164,7 @@ var clipboard_service_1 = __webpack_require__("./src/app/services/clipboard.serv
 var character_service_1 = __webpack_require__("./src/app/services/character.service.ts");
 var app_routing_module_1 = __webpack_require__("./src/app/app.routing.module.ts");
 var lfguild_component_1 = __webpack_require__("./src/app/lfguild/lfguild.component.ts");
+var character_component_1 = __webpack_require__("./src/app/character/character.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -172,7 +173,8 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 app_component_1.AppComponent,
                 result_table_component_1.ResultTableComponent,
-                lfguild_component_1.LfguildComponent
+                lfguild_component_1.LfguildComponent,
+                character_component_1.CharacterComponent,
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -213,9 +215,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
 var lfguild_component_1 = __webpack_require__("./src/app/lfguild/lfguild.component.ts");
+var character_component_1 = __webpack_require__("./src/app/character/character.component.ts");
 var appRoutes = [
     { path: '', redirectTo: 'lfguild', pathMatch: 'full' },
-    { path: 'lfguild', component: lfguild_component_1.LfguildComponent }
+    { path: 'lfguild', component: lfguild_component_1.LfguildComponent },
+    { path: 'character', component: character_component_1.CharacterComponent }
     //{ path: 'test', component: TestComponent }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -238,6 +242,59 @@ exports.AppRoutingModule = AppRoutingModule;
 
 /***/ }),
 
+/***/ "./src/app/character/character.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/character/character.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-result-table style=\"width: 100%\" [dataSource]=\"data | async\">\n    <ng-template #actionColumn let-row>\n      <button mat-icon-button><mat-icon>save</mat-icon></button>\n    </ng-template>\n</app-result-table>"
+
+/***/ }),
+
+/***/ "./src/app/character/character.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+var character_service_1 = __webpack_require__("./src/app/services/character.service.ts");
+var CharacterComponent = /** @class */ (function () {
+    function CharacterComponent(characterService) {
+        this.characterService = characterService;
+    }
+    CharacterComponent.prototype.ngOnInit = function () {
+        this.data = this.characterService.getAll();
+    };
+    CharacterComponent = __decorate([
+        core_1.Component({
+            selector: 'app-character',
+            template: __webpack_require__("./src/app/character/character.component.html"),
+            styles: [__webpack_require__("./src/app/character/character.component.css")]
+        }),
+        __metadata("design:paramtypes", [character_service_1.CharacterService])
+    ], CharacterComponent);
+    return CharacterComponent;
+}());
+exports.CharacterComponent = CharacterComponent;
+
+
+/***/ }),
+
 /***/ "./src/app/lfguild/lfguild.component.css":
 /***/ (function(module, exports) {
 
@@ -248,7 +305,7 @@ module.exports = ""
 /***/ "./src/app/lfguild/lfguild.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mdl-grid\">\n    <form [formGroup]=\"optionsForm\" class=\"mdl-grid\" style=\"width: 100%\">\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"language\" placeholder=\"Sprache\">\n            <mat-option *ngFor=\"let l of languages\" [value]=\"l.value\">\n              {{ l.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"raidsPerWeek\" placeholder=\"Raids pro Woche\">\n            <mat-option *ngFor=\"let rpw of raidsPerWeek\" [value]=\"rpw.value\">\n              {{ rpw.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"nrSites\" placeholder=\"Anz. Seiten die gescannt werden\">\n            <mat-option *ngFor=\"let ns of nrSites\" [value]=\"ns.value\">\n              {{ ns.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\" style=\"padding-top: 16px\"> \n        <div class=\"my-form-field\">\n          <span style=\"margin-right: 16px;\">ordnen nach:</span>\n          <mat-radio-group formControlName=\"orderBy\">\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"ts\">Zeit</mat-radio-button>\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"sc\">Score</mat-radio-button>\n          </mat-radio-group>\n        </div>\n      </div>\n      <div class=\"mdl-cell mdl-cell--4-col\" style=\"padding-top: 16px\">\n      </div>\n    </form>\n  </div>\n<div class=\"mdl-grid\">\n  <div class=\"mdl-cell mdl-cell--12-col\">\n    <button mat-raised-button color=\"primary\" style=\"margin-left: 8px\" (click)=\"startScan()\">WowProgress neu laden</button>  \n    &nbsp; automatisch nachladen in &nbsp;\n    <mat-form-field style=\"width: 50px\">\n      <mat-select [(value)]=\"selectedReloadInterval\">\n        <mat-option *ngFor=\"let m of minutes\" [value]=\"m\">\n          {{ m }}\n        </mat-option>\n      </mat-select>\n    </mat-form-field>\n    &nbsp; Minuten &nbsp;<mat-slide-toggle (change)=\"onReloadChange($event)\"></mat-slide-toggle>\n    &nbsp; letztes Update: {{ lastUpdate | date:'HH:mm:ss' }}\n  </div>\n</div>\n<mat-progress-bar *ngIf=\"isLoading\" class=\"progress-bar\" mode=\"indeterminate\"></mat-progress-bar>\n\n\n<!-- <div class=\"mdl-grid mdl-cell mdl-cell--12-col\"> -->\n  <app-result-table style=\"width: 100%\" [dataSource]=\"data | async\" (save)=\"onSave($event)\">\n    <!-- <ng-template #actionColumn let-row>\n      <button mat-icon-button (click)=\"onSave(row)\"><mat-icon>save</mat-icon></button>\n    </ng-template> -->\n  </app-result-table>\n<!-- </div> -->"
+module.exports = "<div class=\"mdl-grid\">\n    <form [formGroup]=\"optionsForm\" class=\"mdl-grid\" style=\"width: 100%\">\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"language\" placeholder=\"Sprache\">\n            <mat-option *ngFor=\"let l of languages\" [value]=\"l.value\">\n              {{ l.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"raidsPerWeek\" placeholder=\"Raids pro Woche\">\n            <mat-option *ngFor=\"let rpw of raidsPerWeek\" [value]=\"rpw.value\">\n              {{ rpw.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\">\n        <mat-form-field class=\"my-form-field\">\n          <mat-select formControlName=\"nrSites\" placeholder=\"Anz. Seiten die gescannt werden\">\n            <mat-option *ngFor=\"let ns of nrSites\" [value]=\"ns.value\">\n              {{ ns.label }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div class=\"mdl-cell mdl-cell--2-col\" style=\"padding-top: 16px\"> \n        <div class=\"my-form-field\">\n          <span style=\"margin-right: 16px;\">ordnen nach:</span>\n          <mat-radio-group formControlName=\"orderBy\">\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"ts\">Zeit</mat-radio-button>\n            <mat-radio-button style=\"margin-right: 8px;\" value=\"sc\">Score</mat-radio-button>\n          </mat-radio-group>\n        </div>\n      </div>\n      <div class=\"mdl-cell mdl-cell--4-col\" style=\"padding-top: 16px\">\n      </div>\n    </form>\n  </div>\n<div class=\"mdl-grid\">\n  <div class=\"mdl-cell mdl-cell--12-col\">\n    <button mat-raised-button color=\"primary\" style=\"margin-left: 8px\" (click)=\"startScan()\">WowProgress neu laden</button>  \n    &nbsp; automatisch nachladen in &nbsp;\n    <mat-form-field style=\"width: 50px\">\n      <mat-select [(value)]=\"selectedReloadInterval\">\n        <mat-option *ngFor=\"let m of minutes\" [value]=\"m\">\n          {{ m }}\n        </mat-option>\n      </mat-select>\n    </mat-form-field>\n    &nbsp; Minuten &nbsp;<mat-slide-toggle (change)=\"onReloadChange($event)\"></mat-slide-toggle>\n    &nbsp; letztes Update: {{ lastUpdate | date:'HH:mm:ss' }}\n  </div>\n</div>\n<mat-progress-bar *ngIf=\"isLoading\" class=\"progress-bar\" mode=\"indeterminate\"></mat-progress-bar>\n\n\n<!-- <div class=\"mdl-grid mdl-cell mdl-cell--12-col\"> -->\n  <app-result-table style=\"width: 100%\" [dataSource]=\"data | async\" (save)=\"onSave($event)\">\n    <ng-template #actionColumn let-row>\n      <button mat-icon-button (click)=\"onSave(row)\"><mat-icon>save</mat-icon></button>\n    </ng-template>\n  </app-result-table>\n<!-- </div> -->"
 
 /***/ }),
 
@@ -363,7 +420,7 @@ exports.LfguildComponent = LfguildComponent;
 /***/ "./src/app/result-table/result-table.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".class-deathknight {\r\n    background-color: rgba(196, 31, 59, 0.8);\r\n}\r\n\r\n.class-demonhunter {\r\n    background-color: rgba(163, 48, 201, 0.8);\r\n}\r\n\r\n.class-druid {\r\n    background-color: rgba(255, 125, 10, 0.8);\r\n}\r\n\r\n.class-hunter {\r\n    background-color: rgba(171, 212, 115, 0.8);\r\n}\r\n\r\n.class-mage {\r\n    background-color: rgba(105, 204, 240, 0.8);\r\n}\r\n\r\n.class-monk {\r\n    background-color: rgba(0, 132, 103, 0.8);\r\n}\r\n\r\n.class-paladin {\r\n    background-color: rgba(245, 140, 186, 0.8);\r\n}\r\n\r\n.class-priest {\r\n    background-color: rgba(255, 255, 255, 0.8);\r\n}\r\n\r\n.class-rogue {\r\n    background-color: rgba(255, 245, 105, 0.8);\r\n}\r\n\r\n.class-shaman {\r\n    background-color: rgba(36, 89, 255, 0.8);\r\n}\r\n\r\n.class-warlock {\r\n    background-color: rgba(148, 130, 202, 0.8);\r\n}\r\n\r\n.class-warrior {\r\n    background-color: rgba(199, 156, 110, 0.8);\r\n}\r\n\r\n.faction-column {\r\n    -webkit-box-flex: 0.3;\r\n        -ms-flex: 0.3;\r\n            flex: 0.3;\r\n}\r\n\r\n.name-column {\r\n    -webkit-box-flex: 0.7;\r\n        -ms-flex: 0.7;\r\n            flex: 0.7;\r\n}\r\n\r\n.ilvl-column {\r\n    -webkit-box-flex: 0.5;\r\n        -ms-flex: 0.5;\r\n            flex: 0.5;\r\n}\r\n\r\n.charlink-column {\r\n    -webkit-box-flex: 0.5;\r\n        -ms-flex: 0.5;\r\n            flex: 0.5;\r\n}\r\n\r\n.race-column {\r\n    -webkit-box-flex: 0.7;\r\n        -ms-flex: 0.7;\r\n            flex: 0.7;\r\n}\r\n\r\n.class-column {\r\n    -webkit-box-flex: 0.7;\r\n        -ms-flex: 0.7;\r\n            flex: 0.7;\r\n}\r\n\r\n.transfer-column {\r\n    -webkit-box-flex: 0.7;\r\n        -ms-flex: 0.7;\r\n            flex: 0.7;\r\n}\r\n\r\n.raidsPerWeek-column {\r\n    -webkit-box-flex: 0.5;\r\n        -ms-flex: 0.5;\r\n            flex: 0.5;\r\n}\r\n\r\n.specs-column {\r\n    -webkit-box-flex: 1.5;\r\n        -ms-flex: 1.5;\r\n            flex: 1.5;\r\n}\r\n\r\n.pveScore-column {\r\n    -webkit-box-flex: 0.5;\r\n        -ms-flex: 0.5;\r\n            flex: 0.5;\r\n}\r\n\r\n.mPlusScore-column {\r\n    -webkit-box-flex: 0.5;\r\n        -ms-flex: 0.5;\r\n            flex: 0.5;\r\n}\r\n\r\n.export-column {\r\n    -webkit-box-flex: 0.2;\r\n        -ms-flex: 0.2;\r\n            flex: 0.2;\r\n}\r\n\r\n.save-column {\r\n    -webkit-box-flex: 0.2;\r\n        -ms-flex: 0.2;\r\n            flex: 0.2;\r\n}"
+module.exports = ".class-deathknight {\n    background-color: rgba(196, 31, 59, 0.8);\n}\n\n.class-demonhunter {\n    background-color: rgba(163, 48, 201, 0.8);\n}\n\n.class-druid {\n    background-color: rgba(255, 125, 10, 0.8);\n}\n\n.class-hunter {\n    background-color: rgba(171, 212, 115, 0.8);\n}\n\n.class-mage {\n    background-color: rgba(105, 204, 240, 0.8);\n}\n\n.class-monk {\n    background-color: rgba(0, 132, 103, 0.8);\n}\n\n.class-paladin {\n    background-color: rgba(245, 140, 186, 0.8);\n}\n\n.class-priest {\n    background-color: rgba(255, 255, 255, 0.8);\n}\n\n.class-rogue {\n    background-color: rgba(255, 245, 105, 0.8);\n}\n\n.class-shaman {\n    background-color: rgba(36, 89, 255, 0.8);\n}\n\n.class-warlock {\n    background-color: rgba(148, 130, 202, 0.8);\n}\n\n.class-warrior {\n    background-color: rgba(199, 156, 110, 0.8);\n}\n\n.faction-column {\n    -webkit-box-flex: 0.3;\n        -ms-flex: 0.3;\n            flex: 0.3;\n}\n\n.name-column {\n    -webkit-box-flex: 0.7;\n        -ms-flex: 0.7;\n            flex: 0.7;\n}\n\n.ilvl-column {\n    -webkit-box-flex: 0.5;\n        -ms-flex: 0.5;\n            flex: 0.5;\n}\n\n.charlink-column {\n    -webkit-box-flex: 0.5;\n        -ms-flex: 0.5;\n            flex: 0.5;\n}\n\n.race-column {\n    -webkit-box-flex: 0.7;\n        -ms-flex: 0.7;\n            flex: 0.7;\n}\n\n.class-column {\n    -webkit-box-flex: 0.7;\n        -ms-flex: 0.7;\n            flex: 0.7;\n}\n\n.transfer-column {\n    -webkit-box-flex: 0.7;\n        -ms-flex: 0.7;\n            flex: 0.7;\n}\n\n.raidsPerWeek-column {\n    -webkit-box-flex: 0.5;\n        -ms-flex: 0.5;\n            flex: 0.5;\n}\n\n.specs-column {\n    -webkit-box-flex: 1.5;\n        -ms-flex: 1.5;\n            flex: 1.5;\n}\n\n.pveScore-column {\n    -webkit-box-flex: 0.5;\n        -ms-flex: 0.5;\n            flex: 0.5;\n}\n\n.mPlusScore-column {\n    -webkit-box-flex: 0.5;\n        -ms-flex: 0.5;\n            flex: 0.5;\n}\n\n.export-column {\n    -webkit-box-flex: 0.2;\n        -ms-flex: 0.2;\n            flex: 0.2;\n}\n\n.save-column {\n    -webkit-box-flex: 0.2;\n        -ms-flex: 0.2;\n            flex: 0.2;\n}"
 
 /***/ }),
 
@@ -450,6 +507,7 @@ var ResultTableComponent = /** @class */ (function () {
         return res;
     };
     ResultTableComponent.prototype.getSpecs = function (result) {
+        console.log(result);
         var res = new Array();
         result.forEach(function (r) {
             var specs = r.specs.split(',');
@@ -595,6 +653,9 @@ var CharacterService = /** @class */ (function () {
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.options = new http_1.RequestOptions({ headers: this.headers });
     }
+    CharacterService.prototype.getAll = function () {
+        return this.http.get('/api/characters').map(function (res) { return res.json(); });
+    };
     CharacterService.prototype.post = function (character) {
         console.log('saving character');
         console.log(JSON.stringify(character));

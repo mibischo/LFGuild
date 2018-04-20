@@ -13,13 +13,15 @@ import { ClipboardService } from './services/clipboard.service';
 import { CharacterService } from './services/character.service';
 import { AppRoutingModule } from './app.routing.module';
 import { LfguildComponent } from './lfguild/lfguild.component';
+import { CharacterComponent } from './character/character.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ResultTableComponent,
-    LfguildComponent
+    LfguildComponent,
+    CharacterComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,5 +14,5 @@ module.exports = (app) => {
     app.put('/api/characters/:hash', characters.update);
 
     // Delete a character with characterId
-    app.delete('/api/characters/:characterId', characters.delete);
+    app.delete('/api/characters/:hash', characters.delete);
 }

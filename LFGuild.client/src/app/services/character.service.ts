@@ -11,6 +11,10 @@ export class CharacterService {
     this.options = new RequestOptions({ headers: this.headers });
   }
 
+  getAll() {
+      return this.http.get('/api/characters').map(res => res.json());
+  }
+
   post(character: any) {
     console.log('saving character');
     console.log(JSON.stringify(character));
