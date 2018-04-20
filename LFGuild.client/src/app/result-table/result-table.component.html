@@ -157,10 +157,24 @@
         <mat-cell *matCellDef="let row" class="export-column"><button mat-icon-button (click)="copyToClipboard(row)"><mat-icon>content_copy</mat-icon></button></mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="save">
-        <mat-header-cell *matHeaderCellDef class="save-column"></mat-header-cell>
-        <mat-cell *matCellDef="let row" class="save-column">
-          <ng-container *ngTemplateOutlet="actionColumnTmpl, context: { $implicit: row }"></ng-container>
+      <ng-container matColumnDef="extraCol1">
+        <mat-header-cell *matHeaderCellDef class="save-column" [ngClass]="{'hidden-row': hideExtraColumn1()}"></mat-header-cell>
+        <mat-cell *matCellDef="let row" class="save-column" [ngClass]="{'hidden-row': hideExtraColumn1()}">
+          <ng-container *ngTemplateOutlet="extraColumn1Tmpl, context: { $implicit: row }"></ng-container>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="extraCol2">
+        <mat-header-cell *matHeaderCellDef class="save-column" [ngClass]="{'hidden-row': hideExtraColumn2()}"></mat-header-cell>
+        <mat-cell *matCellDef="let row" class="save-column" [ngClass]="{'hidden-row': hideExtraColumn2()}">
+          <ng-container *ngTemplateOutlet="extraColumn2Tmpl, context: { $implicit: row }"></ng-container>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="extraCol3">
+        <mat-header-cell *matHeaderCellDef class="save-column" [ngClass]="{'hidden-row': hideExtraColumn3()}"></mat-header-cell>
+        <mat-cell *matCellDef="let row" class="save-column" [ngClass]="{'hidden-row': hideExtraColumn3()}">
+          <ng-container *ngTemplateOutlet="extraColumn3Tmpl, context: { $implicit: row }"></ng-container>
         </mat-cell>
       </ng-container>
 

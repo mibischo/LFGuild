@@ -17,4 +17,9 @@ export class CharacterComponent implements OnInit {
       this.data = this.characterService.getAll();
   }
 
+  onDelete(character: any) {
+    this.characterService.delete(character);
+    this.data = this.characterService.getAll();
+  }
+
 }

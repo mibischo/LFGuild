@@ -1,5 +1,5 @@
 <app-result-table style="width: 100%" [dataSource]="data | async">
-    <ng-template #actionColumn let-row>
-      <button mat-icon-button><mat-icon>save</mat-icon></button>
+    <ng-template #extraColumn1 let-row>
+      <button mat-icon-button (click)="onDelete(row)"><mat-icon>delete</mat-icon></button>
     </ng-template>
 </app-result-table>
