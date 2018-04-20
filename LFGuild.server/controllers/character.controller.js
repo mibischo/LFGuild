@@ -1,5 +1,6 @@
 const Character = require('../models/character.model.js');
 const History = require('../models/history.model.js');
+const Comment = require('../models/comment.model.js');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 

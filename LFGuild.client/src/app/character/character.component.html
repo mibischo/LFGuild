@@ -2,16 +2,10 @@
     <ng-template #extraColumn1 let-row>
       <button mat-icon-button (click)="onDelete(row)"><mat-icon>delete</mat-icon></button>
     </ng-template>
-    <ng-template #extraColumn1 let-row>
+    <ng-template #extraColumn2 let-row>
         <rating [(ngModel)]="row.rating"
                 [max]="5"
-                iconClass="fa-star"
-                fullIcon="★"
-                emptyIcon="☆"
-                [readonly]="false"
-                [disabled]="false"
-                [float]="true"
-                [titles]="['one', 'two', 'three', 'four', 'five']">
+                (ngModelChange)="onChange($event)">
         </rating>
     </ng-template>
 </app-result-table>

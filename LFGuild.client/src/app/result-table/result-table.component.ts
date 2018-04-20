@@ -11,7 +11,7 @@ import { ClipboardService } from '../services/clipboard.service';
 })
 export class ResultTableComponent implements OnInit, AfterViewInit, AfterContentInit {
 
-  displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp', 'export', 'extraCol1', 'extraCol2', 'extraCol3'];
+  displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp', 'export', 'extraCol1', 'extraCol2'];
   _dataSource = new MatTableDataSource([]);
   data: any[];
   classes: string[];

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const CommentSchema = mongoose.Schema({
-    _id: Schema.Types.ObjectId,
-    character: { type: Schema.Types.ObjectId, ref: 'Character' },
+    _id: mongoose.Schema.ObjectId,
+    character: { type: mongoose.Schema.ObjectId, ref: 'Character' },
     comment: String,
 }, {
     timestamps: true

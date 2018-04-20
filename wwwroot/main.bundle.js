@@ -155,6 +155,7 @@ var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-b
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var animations_1 = __webpack_require__("./node_modules/@angular/platform-browser/esm5/animations.js");
 var http_1 = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
+var ngx_rating_1 = __webpack_require__("./node_modules/ngx-rating/index.js");
 var app_component_1 = __webpack_require__("./src/app/app.component.ts");
 var material_module_1 = __webpack_require__("./src/app/utils/material.module.ts");
 var forms_1 = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
@@ -183,6 +184,7 @@ var AppModule = /** @class */ (function () {
                 forms_1.ReactiveFormsModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
+                ngx_rating_1.RatingModule,
                 app_routing_module_1.AppRoutingModule
             ],
             providers: [
@@ -252,7 +254,7 @@ module.exports = ""
 /***/ "./src/app/character/character.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-result-table style=\"width: 100%\" [dataSource]=\"data | async\">\n    <ng-template #extraColumn1 let-row>\n      <button mat-icon-button (click)=\"onDelete(row)\"><mat-icon>delete</mat-icon></button>\n    </ng-template>\n    <ng-template #extraColumn1 let-row>\n        <rating [(ngModel)]=\"row.rating\"\n                [max]=\"5\"\n                iconClass=\"fa-star\"\n                fullIcon=\"★\"\n                emptyIcon=\"☆\"\n                [readonly]=\"false\"\n                [disabled]=\"false\"\n                [float]=\"true\"\n                [titles]=\"['one', 'two', 'three', 'four', 'five']\">\n        </rating>\n    </ng-template>\n</app-result-table>"
+module.exports = "<app-result-table style=\"width: 100%\" [dataSource]=\"data | async\">\n    <ng-template #extraColumn1 let-row>\n      <button mat-icon-button (click)=\"onDelete(row)\"><mat-icon>delete</mat-icon></button>\n    </ng-template>\n    <ng-template #extraColumn2 let-row>\n        <rating [(ngModel)]=\"row.rating\"\n                [max]=\"5\"\n                (ngModelChange)=\"onChange($event)\">\n        </rating>\n    </ng-template>\n</app-result-table>"
 
 /***/ }),
 
@@ -283,6 +285,9 @@ var CharacterComponent = /** @class */ (function () {
     CharacterComponent.prototype.onDelete = function (character) {
         this.characterService.delete(character);
         this.data = this.characterService.getAll();
+    };
+    CharacterComponent.prototype.onChange = function (changes) {
+        console.log(changes);
     };
     CharacterComponent = __decorate([
         core_1.Component({
@@ -456,7 +461,7 @@ var clipboard_service_1 = __webpack_require__("./src/app/services/clipboard.serv
 var ResultTableComponent = /** @class */ (function () {
     function ResultTableComponent(clipboardService) {
         this.clipboardService = clipboardService;
-        this.displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp', 'export', 'extraCol1', 'extraCol2', 'extraCol3'];
+        this.displayedColumns = ['faction', 'name', 'server', 'ilvl', 'specs', 'pveScore', 'mPlusScore', 'battletag', 'guild', 'charlink', 'raidsPerWeek', 'transfer', 'languages', 'timestamp', 'export', 'extraCol1', 'extraCol2'];
         this._dataSource = new material_1.MatTableDataSource([]);
         this.ilvls = [950, 955, 960, 965, 970, 975, 980, 985, 990];
         this.save = new core_1.EventEmitter();

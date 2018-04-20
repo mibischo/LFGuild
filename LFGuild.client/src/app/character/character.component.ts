@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./character.component.css']
 })
 export class CharacterComponent implements OnInit {
-
+  test: Number;
   data: Observable<any[]>;
   
   constructor(private characterService: CharacterService) { }
@@ -21,5 +21,8 @@ export class CharacterComponent implements OnInit {
     this.characterService.delete(character);
     this.data = this.characterService.getAll();
   }
-
+    
+  onChange(changes: any) {
+      console.log(changes);
+  }
 }
