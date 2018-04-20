@@ -23,7 +23,8 @@
         "../node_modules/material-design-lite/src/material-design-lite.scss"
       ],
       "scripts": [
-        "../node_modules/material-design-lite/material.min.js"
+        "../node_modules/material-design-lite/material.min.js",
+        "../node_modules/ngx-rating/index.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
