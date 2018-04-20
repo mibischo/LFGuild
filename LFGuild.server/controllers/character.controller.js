@@ -186,6 +186,35 @@ exports.setStatus = (req, res) => {
     });
 }
 
+exports.rate = (req, res) => {
+    Character.findOneAndUpdate({ hash: req.params.hash }, { rating: req.params.rating })
+        .then(c => {
+            const history = new History({
+                character: c._id,
+                person: 'Delgrasch',
+                action: 'Status rating: ' + character.rating + ' -> ' + req.params.rating
+            });
+            
+            history.save()
+            .then(data => {
+                res.send(data);
+            }).catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while creating the character."
+                });
+            });
+        }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "character not found with hash " + req.params.hash
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving character with hash " + req.params.hash
+        });
+    });
+};
+
 // Delete a character with the specified characterId in the request
 exports.delete = (req, res) => {
     Character.findOneAndRemove({ hash: req.params.hash })

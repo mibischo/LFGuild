@@ -254,7 +254,7 @@ module.exports = ""
 /***/ "./src/app/character/character.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-result-table style=\"width: 100%\" [dataSource]=\"data | async\">\n    <ng-template #extraColumn1 let-row>\n      <button mat-icon-button (click)=\"onDelete(row)\"><mat-icon>delete</mat-icon></button>\n    </ng-template>\n    <ng-template #extraColumn2 let-row>\n        <rating [(ngModel)]=\"row.rating\"\n                [max]=\"5\"\n                (ngModelChange)=\"onChange($event)\">\n        </rating>\n    </ng-template>\n</app-result-table>"
+module.exports = "<app-result-table style=\"width: 100%\" [dataSource]=\"data | async\">\n    <ng-template #extraColumn1 let-row>\n      <button mat-icon-button (click)=\"onDelete(row)\"><mat-icon>delete</mat-icon></button>\n    </ng-template>\n    <ng-template #extraColumn2 let-row>\n        <rating [(ngModel)]=\"row.rating\"\n                [max]=\"5\"\n                (click)=\"onRate(row)\">\n        </rating>\n    </ng-template>\n</app-result-table>"
 
 /***/ }),
 
@@ -286,8 +286,8 @@ var CharacterComponent = /** @class */ (function () {
         this.characterService.delete(character);
         this.data = this.characterService.getAll();
     };
-    CharacterComponent.prototype.onChange = function (changes) {
-        console.log(changes);
+    CharacterComponent.prototype.onRate = function (row) {
+        this.characterService.rate(row, row.rating);
     };
     CharacterComponent = __decorate([
         core_1.Component({
@@ -691,6 +691,10 @@ var CharacterService = /** @class */ (function () {
     CharacterService.prototype.delete = function (character) {
         console.log('deleting character');
         return this.http.delete('/api/characters/' + character.hash).subscribe();
+    };
+    CharacterService.prototype.rate = function (character, rating) {
+        console.log('rate character');
+        return this.http.put('/api/characters/' + character.hash + '/rate/' + rating).subscribe();
     };
     CharacterService = __decorate([
         core_1.Injectable(),

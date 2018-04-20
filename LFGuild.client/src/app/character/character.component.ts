@@ -21,8 +21,8 @@ export class CharacterComponent implements OnInit {
     this.characterService.delete(character);
     this.data = this.characterService.getAll();
   }
-    
-  onChange(changes: any) {
-      console.log(changes);
+  
+  onRate(row) {
+      this.characterService.rate(row, row.rating);
   }
 }

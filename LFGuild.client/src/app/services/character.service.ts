@@ -24,4 +24,9 @@ export class CharacterService {
     console.log('deleting character');
     return this.http.delete('/api/characters/' + character.hash).subscribe();
   }
+  
+  rate(character: any, rating: number) {
+    console.log('rate character');
+    return this.http.put('/api/characters/' + character.hash + '/rate/' + rating).subscribe();
+  }
 }

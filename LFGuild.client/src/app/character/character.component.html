@@ -5,7 +5,7 @@
     <ng-template #extraColumn2 let-row>
         <rating [(ngModel)]="row.rating"
                 [max]="5"
-                (ngModelChange)="onChange($event)">
+                (click)="onRate(row)">
         </rating>
     </ng-template>
 </app-result-table>

@@ -12,6 +12,8 @@ module.exports = (app) => {
 
     // Update a character with characterId
     app.put('/api/characters/:hash', characters.update);
+    
+    app.put('/api/characters/:hash/rate/:rating', characters.rate);
 
     // Delete a character with characterId
     app.delete('/api/characters/:hash', characters.delete);

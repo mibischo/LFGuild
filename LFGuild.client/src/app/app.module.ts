@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
+import {RatingModule} from "ngx-rating";
 
 
 import { AppComponent } from './app.component';
@@ -30,7 +31,7 @@ import { CharacterComponent } from './character/character.component';
     ReactiveFormsModule,
     FormsModule,
     HttpModule,
-
+    RatingModule,
 
     AppRoutingModule
   ],
