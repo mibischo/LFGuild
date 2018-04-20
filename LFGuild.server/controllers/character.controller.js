@@ -13,7 +13,7 @@ exports.create = (req, res) => {
 
     // Create a character
     const character = new Character({
-        hash: crypto.createHash('md5').update(req.body.name + req.body.server).digest('hex');
+        hash: crypto.createHash('md5').update(req.body.name + req.body.server).digest('hex'),
         CharacterName: req.body.name,
         Server: req.body.server,
         ILvl: req.body.ilvl,
@@ -49,7 +49,7 @@ exports.create = (req, res) => {
 
 // Retrieve and return all characters from the database.
 exports.findAll = (req, res) => {
-    character.find()
+    Character.find()
     .then(characters => {
         res.send(characters);
     }).catch(err => {
@@ -61,32 +61,92 @@ exports.findAll = (req, res) => {
 
 // Find a single character with a characterId
 exports.findOne = (req, res) => {
-    character.findById(req.params.characterId)
+    Character.findOne({ hash: req.params.hash })
     .then(character => {
         if(!character) {
             return res.status(404).send({
-                message: "character not found with id " + req.params.characterId
+                message: "character not found with hash " + req.params.hash
             });            
         }
         res.send(character);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "character not found with id " + req.params.characterId
+                message: "character not found with hash " + req.params.hash
             });                
         }
         return res.status(500).send({
-            message: "Error retrieving character with id " + req.params.characterId
+            message: "Error retrieving character with hash " + req.params.hash
         });
     });
 };
 
 // Update a character identified by the characterId in the request
 exports.update = (req, res) => {
-
+    if(!req.body.hash) {
+        return res.status(400).send({
+            message: "character hash can not be empty"
+        });
+    }
+    
+    Character.findOneAndUpdate({ hash: req.params.hash }, {
+        hash: req.body.hash,
+        CharacterName: req.body.name,
+        Server: req.body.server,
+        ILvl: req.body.ilvl,
+        Charlink: req.body.charlink,
+        Timestamp: req.body.timestamp,
+        Race: req.body.race,
+        Clazz: req.body.clazz,
+        Battletag: req.body.battletag,
+        Languages: req.body.languages,
+        Transfer: req.body.transfer,
+        RaidsPerWeek: req.body.raidsPerWeek,
+        Specs: req.body.specs,
+        PveScore: req.body.pveScore,
+        MPlusScore: req.body.mPlusScore,
+        Guild: req.body.guild,
+        GuildLink: req.body.guildlink,
+        Faction: req.body.faction,
+        Armory: req.body.armory
+    }, {new: true})
+    .then(character => {
+        if(!character) {
+            return res.status(404).send({
+                message: "character not found with hash " + req.params.hash
+            });            
+        }
+        res.send(character);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "character not found with hash " + req.params.hash
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving character with hash " + req.params.hash
+        });
+    });
 };
 
 // Delete a character with the specified characterId in the request
 exports.delete = (req, res) => {
-
+    Character.findOneAndRemove({ hash: req.params.hash })
+    .then(character => {
+        if(!character) {
+            return res.status(404).send({
+                message: "character not found with hash " + req.params.hash
+            });            
+        }
+        res.send(character);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "character not found with hash " + req.params.hash
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving character with hash " + req.params.hash
+        });
+    });
 };
