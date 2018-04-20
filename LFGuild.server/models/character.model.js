@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const CharacterSchema = mongoose.Schema({
+    hash: String,
     CharacterName: String,
     Server: String,
     ILvl: String,

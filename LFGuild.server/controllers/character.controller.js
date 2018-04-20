@@ -1,4 +1,5 @@
 const Character = require('../models/character.model.js');
+const crypto = require('crypto');
 
 // Create and Save a new character
 exports.create = (req, res) => {
@@ -12,6 +13,7 @@ exports.create = (req, res) => {
 
     // Create a character
     const character = new Character({
+        hash: crypto.createHash('md5').update(req.body.name + req.body.server).digest('hex');
         CharacterName: req.body.name,
         Server: req.body.server,
         ILvl: req.body.ilvl,
