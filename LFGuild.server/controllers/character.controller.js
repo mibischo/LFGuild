@@ -1,5 +1,7 @@
 const Character = require('../models/character.model.js');
+const History = require('../models/history.model.js');
 const crypto = require('crypto');
+const mongoose = require('mongoose');
 
 // Create and Save a new character
 exports.create = (req, res) => {
@@ -13,6 +15,7 @@ exports.create = (req, res) => {
 
     // Create a character
     const character = new Character({
+        _id: new mongoose.Types.ObjectId(),
         hash: crypto.createHash('md5').update(req.body.name + req.body.server).digest('hex'),
         name: req.body.name,
         server: req.body.server,
@@ -50,6 +53,8 @@ exports.create = (req, res) => {
 // Retrieve and return all characters from the database.
 exports.findAll = (req, res) => {
     Character.find()
+    .populate('history')
+    .populate('comments')
     .then(characters => {
         res.send(characters);
     }).catch(err => {
@@ -62,6 +67,8 @@ exports.findAll = (req, res) => {
 // Find a single character with a characterId
 exports.findOne = (req, res) => {
     Character.findOne({ hash: req.params.hash })
+    .populate('history')
+    .populate('comments')
     .then(character => {
         if(!character) {
             return res.status(404).send({
@@ -128,6 +135,52 @@ exports.update = (req, res) => {
         });
     });
 };
+
+export.setStatus = (req, res) => {
+    if(!req.body.status) {
+        return res.status(400).send({
+            message: "character hash can not be empty"
+        });
+    }
+    
+    Character.findOne({ hash: req.params.hash })
+    .then(character => {
+        if(!character) {
+            return res.status(404).send({
+                message: "character not found with hash " + req.params.hash
+            });            
+        }
+        
+        const history = new History({
+            _id: new mongoose.Types.ObjectId(),
+            character: character._id,
+            person: 'Delgrasch',
+            action: 'Status changed: ' + character.status + ' -> ' + req.body.status
+        });
+        
+        Character.findOneAndUpdate({ hash: hash }, { status: req.body.status })
+        .then(c => {
+            history.save()
+            .then(data => {
+                res.send(data);
+            }).catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while creating the character."
+                });
+            });
+    });
+        })
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "character not found with hash " + req.params.hash
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving character with hash " + req.params.hash
+        });
+    });
+}
 
 // Delete a character with the specified characterId in the request
 exports.delete = (req, res) => {
