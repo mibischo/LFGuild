@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-const CharacterSchema = mongoose.Schema({
-    _id: Schema.Types.ObjectId,
+const CharacterSchema = new mongoose.Schema({
     hash: String,
     name: String,
     server: String,
@@ -22,10 +21,9 @@ const CharacterSchema = mongoose.Schema({
     faction: String,
     armory: String,
     status: String,
-    history: [{ type: Schema.Types.ObjectId, ref: 'History' }],
-    comments: [{ type: Schema.Types.objectId, ref: 'Comment' }],
-}, {
-    timestamps: true
+    rating: Number,
+    history: [{ type: mongoose.Schema.ObjectId, ref: 'History' }],
+    comments: [{ type: mongoose.Schema.ObjectId, ref: 'Comment' }],
 });
 
 module.exports = mongoose.model('Character', CharacterSchema);

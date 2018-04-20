@@ -35,6 +35,7 @@ exports.create = (req, res) => {
         guildlink: req.body.guildlink,
         faction: req.body.faction,
         armory: req.body.armory,
+        rating: req.body.rating,
         status: 'Neu'
     });
 
@@ -116,7 +117,9 @@ exports.update = (req, res) => {
         guild: req.body.guild,
         guildlink: req.body.guildlink,
         faction: req.body.faction,
-        armory: req.body.armory
+        armory: req.body.armory,
+        status: req.body.status,
+        rating: req.body.rating
     }, {new: true})
     .then(character => {
         if(!character) {
@@ -137,7 +140,7 @@ exports.update = (req, res) => {
     });
 };
 
-export.setStatus = (req, res) => {
+exports.setStatus = (req, res) => {
     if(!req.body.status) {
         return res.status(400).send({
             message: "character hash can not be empty"
@@ -169,8 +172,7 @@ export.setStatus = (req, res) => {
                     message: err.message || "Some error occurred while creating the character."
                 });
             });
-    });
-        })
+        });
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({

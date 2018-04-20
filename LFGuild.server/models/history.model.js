@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 const HistorySchema = mongoose.Schema({
-    _id: Schema.Types.ObjectId,
-    character: { type: Schema.Types.ObjectId, ref: 'Character' },
+    character: { type: mongoose.Schema.Types.ObjectId, ref: 'Character' },
     person: String,
     action: String,
 }, {
